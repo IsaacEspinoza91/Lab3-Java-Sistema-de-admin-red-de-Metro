@@ -1,5 +1,9 @@
+import TDAs.Line_212788287_EspinozaBarria;
 import TDAs.Section_212788287_EspinozaBarria;
 import TDAs.Station_212788287_EspinozaBarria;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -24,6 +28,33 @@ public class Main {
         Section_212788287_EspinozaBarria s1 = new Section_212788287_EspinozaBarria(st1,st2,30,8);
         Section_212788287_EspinozaBarria s2 = new Section_212788287_EspinozaBarria(st2,st3,50,49);
         Section_212788287_EspinozaBarria s3 = new Section_212788287_EspinozaBarria(st3,st4,40,343);
+        Section_212788287_EspinozaBarria s4 = new Section_212788287_EspinozaBarria(st4,st5,49,45);
+        //List<Section_212788287_EspinozaBarria> seccionesL1 = new ArrayList<>(Arrays.asList(s1,s2,s3,s4));
+        List<Section_212788287_EspinozaBarria> seccionesL1 = new ArrayList<>();
+
+
+
+        Line_212788287_EspinozaBarria l1 = new Line_212788287_EspinozaBarria(1,"Linea1","fds",seccionesL1);
+        l1.lineAddSection(s1);
+        l1.lineAddSection(s2);
+        l1.lineAddSection(s3);
+        l1.lineAddSection(s4);
+
+        var alo = l1.lineLength();
+        System.out.println("LA DISTANCIA ES: " +alo);
+        List<Section_212788287_EspinozaBarria> subSec = l1.lineSubSectionsByNames("Republica","Estacion Central");
+        System.out.println(subSec);
+        var subDistancia = l1.lineSectionLength("Republica","Estacion Central");
+        System.out.println("\n\tLa subdistancia es  " + subDistancia);
+        var costoLinea = l1.lineCost();
+        System.out.println("\n\tCosto de Linea: " + costoLinea);
+
+        if (l1.isLine()){
+            System.out.println("verdasddd");
+        }else {
+            System.out.println("mfsdnafkdfs");
+        }
+
 
 
 

@@ -3,10 +3,10 @@ package TDAs;
 public class Section_212788287_EspinozaBarria {
 
     //Atributos
-    private Station_212788287_EspinozaBarria station1;
-    private Station_212788287_EspinozaBarria station2;
-    private double distance;
-    private double cost;
+    private Station_212788287_EspinozaBarria station1;  //Estacion 1 de una seccion
+    private Station_212788287_EspinozaBarria station2;  //Estacion 2 de una seccion
+    private double distance;                            //Distancia entre estaciones
+    private double cost;                                //Costo de recorrer una seccion
 
 
 
