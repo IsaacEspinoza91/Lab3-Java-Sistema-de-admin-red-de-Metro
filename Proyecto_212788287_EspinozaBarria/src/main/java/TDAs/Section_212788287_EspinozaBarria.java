@@ -1,5 +1,11 @@
 package TDAs;
 
+/**
+ * Section es una abstraccion de una seccion|tramo de un sistema de metro.
+ * @author Isaac Espinoza
+ * @version 1.0 en Java 11
+ * @since 2024-06-12
+ */
 public class Section_212788287_EspinozaBarria {
 
     //Atributos
@@ -10,8 +16,18 @@ public class Section_212788287_EspinozaBarria {
 
 
 
-    //Constructores
-    public Section_212788287_EspinozaBarria() {}
+    //Constructor
+    /**
+     * Constructor de un objeto Section.
+     * Requerimiento Funcional 2
+     * Conseidera los casos de parametros invalidos y no crea el objeto, lanzando una excepcion
+     * @param station1 Primera estacion (Station) de la section
+     * @param station2 Segunda estacion (Station) de la section
+     * @param distance Distancia en km (double mayor a 0) entre las estaciones de la section
+     * @param cost Costo (double no negativo) de recorrer la section
+     * @throws IllegalArgumentException Al ingresar parametros invalidos como distancia o costo menor a 0, que las
+     * Stations ingresadas sean la misma
+     */
     public Section_212788287_EspinozaBarria(Station_212788287_EspinozaBarria station1,
                                             Station_212788287_EspinozaBarria station2,
                                             double distance, double cost) {
@@ -68,11 +84,7 @@ public class Section_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        return "Section{" +
-                "station1=" + station1 +
-                ", station2=" + station2 +
-                ", distance=" + distance +
-                ", cost=" + cost +
-                '}';
+        return "\t\t\tEstacion1->  " + station1 + ",        Estacion1->  " + station2 +
+                "\n\t\t\tDistancia (Km): " + distance + ", Costo: " + cost + "\n";
     }
 }

@@ -1,5 +1,11 @@
 package TDAs;
 
+/**
+ * Station es una abstraccion de una estacion de un sistema de metro.
+ * @author Isaac Espinoza
+ * @version 1.0 en Java 11
+ * @since 2024-06-12
+ */
 public class Station_212788287_EspinozaBarria {
 
     //Atributos
@@ -10,8 +16,16 @@ public class Station_212788287_EspinozaBarria {
 
 
 
-    //Constructores
-    public Station_212788287_EspinozaBarria() {}; //constructor vacio
+    //Constructor
+    /**
+     * Constructor de un objeto Station.
+     * Requerimiento Funcional 1
+     * @param id identificador (int) de la station
+     * @param name nombre (String) de la station
+     * @param type tipo de station, es un String de forma "m" o "r" o "c" o "t"
+     * @param stopTime tiempo de parada en segundos (int no negativo) de la station
+     * @throws IllegalArgumentException Al ingresar tiempo de parada no positivo o algun typeStation invalido
+     */
     public Station_212788287_EspinozaBarria(int id, String name, String type, int stopTime) {
         if (stopTime < 0){
             throw new IllegalArgumentException("El stopTime no puede ser negativo");
@@ -65,11 +79,7 @@ public class Station_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        return "Station{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", stopTime=" + stopTime +
-                '}';
+        return "ID:" + id + ", Nombre:" + name + ", Tipo:" + type +
+                ", stopTime=" + stopTime ;
     }
 }

@@ -1,8 +1,8 @@
-import TDAs.Line_212788287_EspinozaBarria;
-import TDAs.Section_212788287_EspinozaBarria;
-import TDAs.Station_212788287_EspinozaBarria;
+import TDAs.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -19,22 +19,22 @@ public class Main {
         } catch (IllegalArgumentException e) {
             System.out.println("Error al crear Station: "+ e.getMessage());;
         }*/
-        Station_212788287_EspinozaBarria st1 = new Station_212788287_EspinozaBarria(1, "USACH", "t", 3);
-        Station_212788287_EspinozaBarria st2 = new Station_212788287_EspinozaBarria(2,"Estacion Central","r",20);
+        Station_212788287_EspinozaBarria st1 = new Station_212788287_EspinozaBarria(1, "USACH", "t", 10);
+        Station_212788287_EspinozaBarria st2 = new Station_212788287_EspinozaBarria(2,"Estacion Central","r",230);
         Station_212788287_EspinozaBarria st3 = new Station_212788287_EspinozaBarria(3,"ULA","c",100);
-        Station_212788287_EspinozaBarria st4 = new Station_212788287_EspinozaBarria(4,"Republica","c",10);
+        Station_212788287_EspinozaBarria st4 = new Station_212788287_EspinozaBarria(4,"Republica","c",99);
         Station_212788287_EspinozaBarria st5 = new Station_212788287_EspinozaBarria(5,"Los Heroes","t",300);
 
-        Section_212788287_EspinozaBarria s1 = new Section_212788287_EspinozaBarria(st1,st2,30,8);
-        Section_212788287_EspinozaBarria s2 = new Section_212788287_EspinozaBarria(st2,st3,50,49);
-        Section_212788287_EspinozaBarria s3 = new Section_212788287_EspinozaBarria(st3,st4,40,343);
-        Section_212788287_EspinozaBarria s4 = new Section_212788287_EspinozaBarria(st4,st5,49,45);
+        Section_212788287_EspinozaBarria s1 = new Section_212788287_EspinozaBarria(st1,st2,6,8);
+        Section_212788287_EspinozaBarria s2 = new Section_212788287_EspinozaBarria(st2,st3,5,49);
+        Section_212788287_EspinozaBarria s3 = new Section_212788287_EspinozaBarria(st3,st4,2,343);
+        Section_212788287_EspinozaBarria s4 = new Section_212788287_EspinozaBarria(st4,st5,4,45);
         //List<Section_212788287_EspinozaBarria> seccionesL1 = new ArrayList<>(Arrays.asList(s1,s2,s3,s4));
         List<Section_212788287_EspinozaBarria> seccionesL1 = new ArrayList<>();
 
 
 
-        Line_212788287_EspinozaBarria l1 = new Line_212788287_EspinozaBarria(1,"Linea1","fds",seccionesL1);
+        Line_212788287_EspinozaBarria l1 = new Line_212788287_EspinozaBarria(1,"Linea1","TipoA",seccionesL1);
         l1.lineAddSection(s1);
         l1.lineAddSection(s2);
         l1.lineAddSection(s3);
