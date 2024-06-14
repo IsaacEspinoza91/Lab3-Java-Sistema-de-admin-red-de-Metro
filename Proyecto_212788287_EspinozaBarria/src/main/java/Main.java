@@ -56,6 +56,26 @@ public class Main {
         }
 
 
+        TerminalPCar_212788287_EspinozaBarria t1 = new TerminalPCar_212788287_EspinozaBarria(1,30,"MODELO1","Fender");
+        CentralPCar_212788287_EspinozaBarria  t2 = new CentralPCar_212788287_EspinozaBarria(2,40,"MODELO1","Fender");
+        CentralPCar_212788287_EspinozaBarria  t3 = new CentralPCar_212788287_EspinozaBarria(3,50,"MODELO1","Fender");
+        TerminalPCar_212788287_EspinozaBarria t4 = new TerminalPCar_212788287_EspinozaBarria(4,9,"MODELO1","Fender");
+
+        List<PassengerCar_212788287_EspinozaBarria> carros = new ArrayList<>(Arrays.asList(t1,t2,t3,t4));
+
+        Train_212788287_EspinozaBarria tren1 = new Train_212788287_EspinozaBarria(1,"Fender","TipoA",90,carros);
+        Train_212788287_EspinozaBarria tren2 = new Train_212788287_EspinozaBarria(2,"Fender","TipoB",200,carros);
+        tren2.removeCar(1);
+        if(tren1.isTrain()){
+            System.out.println("Tren valido");
+        }else{
+            System.out.println("Tren IN       no valido");
+        }
+
+        Driver_212788287_EspinozaBarria dri1 = new Driver_212788287_EspinozaBarria(1,"PedroPiedra","Fender");
+        Driver_212788287_EspinozaBarria dri2 = new Driver_212788287_EspinozaBarria(2,"David Bisbale","Fender");
+
+        System.out.println(dri1);
 
 
     }
