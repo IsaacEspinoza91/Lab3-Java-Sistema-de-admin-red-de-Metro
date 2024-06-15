@@ -75,7 +75,17 @@ public class Main {
         Driver_212788287_EspinozaBarria dri1 = new Driver_212788287_EspinozaBarria(1,"PedroPiedra","Fender");
         Driver_212788287_EspinozaBarria dri2 = new Driver_212788287_EspinozaBarria(2,"David Bisbale","Fender");
 
-        System.out.println(dri1);
+        Subway_212788287_EspinozaBarria sw1 = new Subway_212788287_EspinozaBarria(1,"Metro Isaac");
+        sw1.addLine(l1);
+        sw1.addTrain(tren1);
+        sw1.addTrain(tren2);
+        sw1.addDriver(dri1);
+        sw1.addDriver(dri2);
+
+
+        Date fecha = new Date(2024,4,4,23,48);
+
+
 
 
     }

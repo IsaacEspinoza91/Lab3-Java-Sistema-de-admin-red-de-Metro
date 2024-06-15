@@ -44,6 +44,7 @@ public class Section_212788287_EspinozaBarria {
         this.station2 = station2;
         this.distance = distance;
         this.cost = cost;
+        System.out.println("\n --- Se creo exitosamente el objeto Section ---\n");
     }
 
 
@@ -84,7 +85,7 @@ public class Section_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        return "\t\t\tEstacion1->  " + station1 + ",        Estacion1->  " + station2 +
+        return "\t\t\tEstacion1->  " + station1 + ",        Estacion2->  " + station2 +
                 "\n\t\t\tDistancia (Km): " + distance + ", Costo: " + cost + "\n";
     }
 }
