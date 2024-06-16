@@ -37,7 +37,6 @@ public class Station_212788287_EspinozaBarria {
         this.stopTime = stopTime;
         this.type = type;
         this.name = name;
-        System.out.println("\n --- Se creo exitosamente el objeto Station ---\n");
     }
 
 
@@ -80,7 +79,7 @@ public class Station_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        return "{ID:" + id + ", Nombre:" + name + ", Tipo:" + type +
-                ", stopTime=" + stopTime + "}";
+        return "ID:" + id + ", Nombre:" + name + ", Tipo:" + type +
+                ", stopTime=" + stopTime ;
     }
 }

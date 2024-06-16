@@ -14,7 +14,6 @@ public class CentralPCar_212788287_EspinozaBarria extends PassengerCar_212788287
     //Constructor
     /**
      * Constructor de objeto carro de pasajeros tipo central
-     * Requerimiento Funcional 10
      * @param id Identificacion (int) de un carro de pasajeros
      * @param passengerCapacity Capacidad maxima (int) de un carro de pasajeros
      * @param model Modelo (String) de un carro de pasajeros
@@ -22,7 +21,6 @@ public class CentralPCar_212788287_EspinozaBarria extends PassengerCar_212788287
      */
     public CentralPCar_212788287_EspinozaBarria(int id, int passengerCapacity, String model, String trainMaker) {
         super(id, passengerCapacity, model, trainMaker);
-        System.out.println("\n --- Se creo exitosamente el objeto PassengerCar de tipo Central ---\n");
     }
 
     //Metodos

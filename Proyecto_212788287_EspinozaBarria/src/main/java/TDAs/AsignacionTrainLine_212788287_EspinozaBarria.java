@@ -7,7 +7,7 @@ import java.util.List;
  * AsignacionesTrainLine es una clase que representa a un objeto que relaciona la ID de un Line con sus trenes
  * @author isaac
  * @version 1.0 Java 11
- * @since 2024-06-15
+ * @since 2024-06-16
  */
 public class AsignacionTrainLine_212788287_EspinozaBarria {
 

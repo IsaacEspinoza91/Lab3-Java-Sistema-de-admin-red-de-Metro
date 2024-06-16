@@ -26,7 +26,6 @@ public class Driver_212788287_EspinozaBarria {
         this.id = id;
         this.name = name;
         this.trainMaker = trainMaker;
-        System.out.println("\n --- Se creo exitosamente el objeto Driver ---\n");
     }
 
 

@@ -33,7 +33,6 @@ public class Line_212788287_EspinozaBarria {
         this.name = name;
         this.typeRail = typeRail;
         this.sections = sections;
-        System.out.println("\n --- Se creo exitosamente el objeto Line ---\n");
     }
 
 
@@ -82,7 +81,6 @@ public class Line_212788287_EspinozaBarria {
         for(Section_212788287_EspinozaBarria seccionAct : sections){
             distanciaTotal = distanciaTotal + seccionAct.getDistance();
         }
-        System.out.println("\n --- Se calculo exitosamente la distancia total de la linea en lineLength ---\n");
         return distanciaTotal;
     }
 
@@ -138,7 +136,6 @@ public class Line_212788287_EspinozaBarria {
         for(Section_212788287_EspinozaBarria seccion : subSections){
             distancia = distancia + seccion.getDistance();
         }
-        System.out.println("\n --- Se calculo exitosamente la distancia entre estaciones de la linea en lineSectionLength ---\n");
         return distancia;
     }
 
@@ -152,7 +149,6 @@ public class Line_212788287_EspinozaBarria {
         for(Section_212788287_EspinozaBarria seccion : sections){
             costoTotal = costoTotal + seccion.getCost();
         }
-        System.out.println("\n --- Se calculo exitosamente el costo total de la linea en lineCost ---\n");
         return costoTotal;
     }
 
@@ -169,7 +165,6 @@ public class Line_212788287_EspinozaBarria {
         for(Section_212788287_EspinozaBarria seccion : subSections){
             costo = costo + seccion.getCost();
         }
-        System.out.println("\n --- Se calculo exitosamente el costo entre estaciones de la linea en lineSectionCost ---\n");
         return costo;
     }
 
@@ -183,10 +178,8 @@ public class Line_212788287_EspinozaBarria {
     public void lineAddSection(Section_212788287_EspinozaBarria seccion){
         if(sections.isEmpty()){
             sections.add(seccion);
-            System.out.println("\n --- Se agrego exitosamente la seccion a la linea en lineAddSection ---\n");
         }else if(sections.get(sections.size()-1).getStation2().equals(seccion.getStation1())){
             sections.add(seccion);
-            System.out.println("\n --- Se agrego exitosamente la seccion a la linea en lineAddSection ---\n");
         }else{
             System.out.println("La seccion ingresada no esta conectada con la seccion anterior. No se agrego la section a la line");
         }
@@ -200,7 +193,6 @@ public class Line_212788287_EspinozaBarria {
      * @return Resultado booleano
      */
     public boolean isLine(){
-        System.out.println("\n --- Se verifico exitosamente si la line es valida en isLine ---\n");
         return isDirectLine() || isCircularLine();
     }
 

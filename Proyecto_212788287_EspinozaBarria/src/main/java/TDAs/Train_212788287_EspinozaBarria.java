@@ -40,7 +40,6 @@ public class Train_212788287_EspinozaBarria {
         this.typeRail = typeRail;
         this.speed = speed;
         this.carList = carList;
-        System.out.println("\n --- Se creo exitosamente el objeto Train ---\n");
     }
 
 
@@ -98,12 +97,10 @@ public class Train_212788287_EspinozaBarria {
     public void addCar(PassengerCar_212788287_EspinozaBarria pCar, int posicion){
         if(posicion==0 && carList.size()==0){//caso especial primer elemento
             carList.add(pCar);
-            System.out.println("\n --- Se agrego exitosamente el carro al tren en addCar ---\n");
         }else if(posicion<0 || posicion > carList.size()){
             System.out.println("Error Posicion no valida. No se agrego el PassagerCar al Train");
         }else{
             carList.add(posicion, pCar);
-            System.out.println("\n --- Se agrego exitosamente el carro al tren en addCar ---\n");
         }
     }
 
@@ -119,7 +116,6 @@ public class Train_212788287_EspinozaBarria {
             System.out.println("Error Posicion no valida. No se elimino el PassagerCar al Train");
         }else{
             carList.remove(posicion);
-            System.out.println("\n --- Se elimino exitosamente el carro al tren en addCar ---\n");
         }
     }
 
@@ -163,7 +159,6 @@ public class Train_212788287_EspinozaBarria {
             }
         }
         //verificamos mismo modelo, mismo maker, y que los carros sean compatibles de tipo
-        System.out.println("\n --- Se verifico exitosamente si el tren es valido en isTrain ---\n");
         return sameModelOfCars && sameMakerOfCars && compatibleCarsOfTrain();
     }
 
@@ -177,7 +172,6 @@ public class Train_212788287_EspinozaBarria {
         for(PassengerCar_212788287_EspinozaBarria pcar : carList){
             capacidadTotal = capacidadTotal + pcar.getPassengerCapacity();
         }
-        System.out.println("\n --- Se calculo exitosamente la capacidad total del tren en fetchCapacity ---\n");
         return capacidadTotal;
     }
 
