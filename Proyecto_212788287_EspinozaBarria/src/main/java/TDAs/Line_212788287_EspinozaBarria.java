@@ -12,7 +12,7 @@ import java.util.List;
 public class Line_212788287_EspinozaBarria {
 
     //Atributos
-    private int id;
+    private double id;
     private String name;
     private String typeRail;
     private List<Section_212788287_EspinozaBarria> sections;
@@ -23,12 +23,12 @@ public class Line_212788287_EspinozaBarria {
     /**
      * Constructor de un objeto Line.
      * Requerimiento Funcional 3
-     * @param id Identificador (int) de una Line
+     * @param id Identificador (double) de una Line
      * @param name Nombre (String) de una Line
      * @param typeRail Tipo de riel (String) de una Line
      * @param sections Lista de secciones (List&lt;Section&gt;) de una Line
      */
-    public Line_212788287_EspinozaBarria(int id, String name, String typeRail, List<Section_212788287_EspinozaBarria> sections) {
+    public Line_212788287_EspinozaBarria(double id, String name, String typeRail, List<Section_212788287_EspinozaBarria> sections) {
         this.id = id;
         this.name = name;
         this.typeRail = typeRail;
@@ -40,7 +40,7 @@ public class Line_212788287_EspinozaBarria {
 
     //Metodos
     //getters y setters
-    public int getId() {
+    public double getId() {
         return id;
     }
     public void setId(int id) {
@@ -255,12 +255,15 @@ public class Line_212788287_EspinozaBarria {
 
     /**
      * Verifica que el inicio de sections de una Line sea valido considerando los tipos de Station terminal, o terminal y mantencion
+     * Considerando caso terminal o combinacion, o caso mantencion y el siguiente es terminal o combinacion
      * @return Resultado booleano
      */
     public boolean verificarInicioSectionsTerminalStation(){
-        if(sections.get(0).getStation1().getType().equals("t") && !(sections.get(0).getStation2().getType().equals("t"))){
+        if((sections.get(0).getStation1().getType().equals("t") || sections.get(0).getStation1().getType().equals("c"))
+                && !(sections.get(0).getStation2().getType().equals("t"))){
             return true;
-        } else if(sections.get(0).getStation1().getType().equals("m") && sections.get(0).getStation2().getType().equals("t")){
+        } else if(sections.get(0).getStation1().getType().equals("m") &&
+                (sections.get(0).getStation2().getType().equals("t") || sections.get(0).getStation2().getType().equals("c"))){
             return true;
         } else {//caso en que sean de otro tipo ,o que no sea del tipo t ,o no sea tipo m-t
             return false;
@@ -268,15 +271,18 @@ public class Line_212788287_EspinozaBarria {
     }
 
     /**
-     * Verifica que el final de sections de una Line sea valido considerando los tipos de Station terminal, o terminal y mantencion
+     * Verifica que el final de sections de una Line sea valido considerando los tipos de Station terminal, o terminal y mantencion.
+     * Considerando caso terminal o combinacion, o caso mantencion y el siguiente es terminal o combinacion
      * @return Resultado booleano
      */
     public boolean verificarFinalSectionsTerminalStation(){
-        if(sections.get(sections.size()-1).getStation2().getType().equals("t") &&
-                !(sections.get(sections.size()-1).getStation1().getType().equals("t"))){
+        if((sections.get(sections.size()-1).getStation2().getType().equals("t") ||
+                sections.get(sections.size()-1).getStation2().getType().equals("c")) //estacion final es termi o combi
+                && !(sections.get(sections.size()-1).getStation1().getType().equals("t"))){
             return true;
         } else if(sections.get(sections.size()-1).getStation2().getType().equals("m") &&
-                sections.get(sections.size()-1).getStation1().getType().equals("t")) {
+                (sections.get(sections.size()-1).getStation1().getType().equals("t")
+                        || sections.get(sections.size()-1).getStation1().getType().equals("c")) ){
             return true;
         } else{//caso en que sean de otro tipo ,o que no sea del tipo t ,o no sea tipo m-t
             return false;

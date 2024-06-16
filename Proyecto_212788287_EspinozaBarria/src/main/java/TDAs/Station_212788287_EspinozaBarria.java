@@ -30,14 +30,14 @@ public class Station_212788287_EspinozaBarria {
         if (stopTime < 0){
             throw new IllegalArgumentException("El stopTime no puede ser negativo");
         }
-        if ((type != "m") && (type != "r") && (type != "c") && (type != "t")){
+        if ((!type.equals("m")) && (!type.equals("r")) && (!type.equals("c")) && (!type.equals("t"))){
             throw new IllegalArgumentException("El tipo de station invalido. Debe ser 'm', 't', 'r' o 'c'.");
         }
         this.id = id;
         this.stopTime = stopTime;
         this.type = type;
         this.name = name;
-        System.out.println("\n --- Se creo exitosamente el objeto Station ---\n");
+        System.out.println(" --- Se creo exitosamente el objeto Station ---");
     }
 
 

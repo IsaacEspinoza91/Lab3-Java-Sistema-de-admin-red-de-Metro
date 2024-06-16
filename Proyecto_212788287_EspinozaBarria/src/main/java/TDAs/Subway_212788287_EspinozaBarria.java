@@ -1,16 +1,16 @@
 package TDAs;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.*;
 //import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+
 
 /**
  * Subway es la abstraccion de una red de metro
  * @author isaac
  * @version 1.0 Java 11
- * @since 2024-06-16
+ * @since 2024-06-15
  */
 public class Subway_212788287_EspinozaBarria {
 
@@ -22,6 +22,13 @@ public class Subway_212788287_EspinozaBarria {
     private List<Driver_212788287_EspinozaBarria> drivers = new ArrayList<>();
     private List<AsignacionTrainLine_212788287_EspinozaBarria> asignacionesTrainLine = new ArrayList<>();
     private List<RecorridoDriverTrain_212788287_EspinozaBarria> recorridosDriverTrain  = new ArrayList<>();
+    public Map<Integer, Station_212788287_EspinozaBarria> stationsMap = new HashMap<>();
+    public Map<Integer, Section_212788287_EspinozaBarria> sectionsMap = new HashMap<>();
+    public Map<Double, Line_212788287_EspinozaBarria> linesMap = new HashMap<>();
+    public Map<Integer, Driver_212788287_EspinozaBarria> driversMap = new HashMap<>();
+    public Map<Integer, PassengerCar_212788287_EspinozaBarria> passengerCarsMap = new HashMap<>();
+    public Map<Integer, Train_212788287_EspinozaBarria> trainsMap = new HashMap<>();
+    public Map<Double, List<Train_212788287_EspinozaBarria>> asignacionesTL = new HashMap<>();
 
 
 
@@ -132,7 +139,7 @@ public class Subway_212788287_EspinozaBarria {
     public void addLine(Line_212788287_EspinozaBarria line){
         if(!(lines.contains(line)) && line.isLine()) {
             lines.add(line);
-            System.out.println("\n --- Se agrego exitosamente el tren al metro en addLine ---\n");
+            System.out.println("\n --- Se agrego exitosamente la linea al metro en addLine ---\n");
         }else{
             System.out.println("La linea ingresada ya existe en el Subway. No se agrego");
         }
@@ -204,8 +211,16 @@ public class Subway_212788287_EspinozaBarria {
         }
 
         String str5 = "Lista de asignaciones Trenes-Linea:\n";
-        for(AsignacionTrainLine_212788287_EspinozaBarria asig : asignacionesTrainLine){
-            str5 = str5 + "\tAsignacionTrainLine:\n" + asig.toString() + "\n";
+        //for(AsignacionTrainLine_212788287_EspinozaBarria asig : asignacionesTrainLine){
+        //    str5 = str5 + "\tAsignacionTrainLine:\n" + asig.toString() + "\n";
+        //}
+
+        for(double idsLineWithTrains : asignacionesTL.keySet()){
+            str5 = str5 + "\tID Linea: " + idsLineWithTrains + ",      IDs Trenes:  [    ";
+            for(Train_212788287_EspinozaBarria trenAsignado : asignacionesTL.get(idsLineWithTrains)){
+                str5 = str5 + trenAsignado.getId() +"    ";
+            }
+            str5 = str5 + "]\n";
         }
 
         String str6 = "\nLista de recorridos Conductor-Tren:\n";
@@ -299,7 +314,7 @@ public class Subway_212788287_EspinozaBarria {
      * @return Informacion (String) de la estacion y la linea donde se encuentra el tren
      */
     public String whereIsTrain(Train_212788287_EspinozaBarria train, GregorianCalendar time) {
-        int idLinea =0;
+        double idLinea =0;
         Station_212788287_EspinozaBarria estacionEncontrada = getStationWhereIsTrain(train,time);
 
         //buscamos el id de linea segun los trenes asignados en asignacionesTrainLine
@@ -320,7 +335,8 @@ public class Subway_212788287_EspinozaBarria {
      * @return Estacion (Station) mas cercana al tren el horario ingresado
      */
     public Station_212788287_EspinozaBarria getStationWhereIsTrain(Train_212788287_EspinozaBarria train, GregorianCalendar time){
-        int a=0, idLinea=-1;
+        int a=0;
+        double idLinea=-1;
         int sumaParcialSegundos, segundosRecorridoSection = 0, segundosStation2Section = 0;
         Line_212788287_EspinozaBarria lineAux = null;
         RecorridoDriverTrain_212788287_EspinozaBarria recorridoAux = null;
@@ -405,7 +421,7 @@ public class Subway_212788287_EspinozaBarria {
      * @return Lista de Estaciones (List&lt;Station&gt;)
      */
     public List<Station_212788287_EspinozaBarria> trainPath(Train_212788287_EspinozaBarria train, GregorianCalendar date){
-        int idLinea=-1;
+        double idLinea=-1;
         Line_212788287_EspinozaBarria lineAux = null;
         RecorridoDriverTrain_212788287_EspinozaBarria recorridoAux = null;
         List<Station_212788287_EspinozaBarria> listaEstaciones = new ArrayList<>();
@@ -470,6 +486,225 @@ public class Subway_212788287_EspinozaBarria {
 
 
 
+    public void addStationsByTXT(String archivo){
+        try {
+            //leer el archivo
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int id = Integer.parseInt(parts[0]);
+                String nombre = parts[1];
+                String tipo = parts[2];
+                int tiempo = Integer.parseInt(parts[3]);
+
+                Station_212788287_EspinozaBarria station = new Station_212788287_EspinozaBarria(id, nombre, tipo, tiempo);
+                stationsMap.put(id, station);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n --- Se agregaron exitosamente las estaciones a la red de metro al leer el archivo ---\n");
+
+    }
+
+    public void addSectionsByTXT(String archivo){
+        try {
+            //leer el archivo
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int id = Integer.parseInt(parts[0]);
+                int estacion1Id = Integer.parseInt(parts[1]);
+                int estacion2Id = Integer.parseInt(parts[2]);
+                double distancia = Double.parseDouble(parts[3]);
+                double costo = Double.parseDouble(parts[4]);
+                Station_212788287_EspinozaBarria estacion1 = stationsMap.get(estacion1Id);
+                Station_212788287_EspinozaBarria estacion2 = stationsMap.get(estacion2Id);
+                Section_212788287_EspinozaBarria section = new Section_212788287_EspinozaBarria(estacion1, estacion2, distancia, costo);
+                sectionsMap.put(id, section);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n --- Se agregaron exitosamente las secciones a la red de metro al leer el archivo ---\n");
+    }
+
+
+    public void addLinesByTXT(String archivo){
+        try {
+            //leer el archivo
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                double id = Double.parseDouble(parts[0]);
+                String nombre = parts[1];
+                String tipoRiel = parts[2];
+                String[] idsSecciones = parts[3].split("-");
+                Line_212788287_EspinozaBarria lineaMetro = new Line_212788287_EspinozaBarria(id,nombre,tipoRiel,new ArrayList<>());
+                for(String idSeccion : idsSecciones){
+                    //agregamos las sections a la linea creada actual
+                    lineaMetro.lineAddSection(sectionsMap.get(Integer.parseInt(idSeccion)));
+                }
+
+                if(lineaMetro.isLine()) {
+                    addLine(lineaMetro);
+                    linesMap.put(id,lineaMetro);
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n --- Se agregaron exitosamente las lineas a la red de metro al leer el archivo ---\n");
+    }
+
+
+    public void addDriversByTXT(String archivo){
+        try {
+            //leer el archivo
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int id = Integer.parseInt(parts[0]);
+                String nombre = parts[1];
+                String fabricanteTrenes = parts[2];
+                Driver_212788287_EspinozaBarria driverActual = new Driver_212788287_EspinozaBarria(id,nombre,fabricanteTrenes);
+                addDriver(driverActual);
+                driversMap.put(id, driverActual);
+
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n --- Se agregaron exitosamente los conductores a la red de metro al leer el archivo ---\n");
+    }
+
+
+    public void addPassengerCarsByTXT(String archivo){
+        try {
+            //leer el archivo
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int id = Integer.parseInt(parts[0]);
+                int capacidad = Integer.parseInt(parts[1]);
+                String modelo = parts[2];
+                String tmaker = parts[3];
+                String tipo = parts[4];
+                if(tipo.equals("t")){
+                    TerminalPCar_212788287_EspinozaBarria carro = new TerminalPCar_212788287_EspinozaBarria(id,capacidad,modelo,tmaker);
+                    passengerCarsMap.put(id,carro);
+                }else{
+                    CentralPCar_212788287_EspinozaBarria carro = new CentralPCar_212788287_EspinozaBarria(id,capacidad,modelo,tmaker);
+                    passengerCarsMap.put(id,carro);
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n --- Se agregaron exitosamente los carros a la red de metro al leer el archivo ---\n");
+    }
+
+
+    public void addTrainsByTXT(String archivo){
+        try {
+            //leer el archivo
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int id = Integer.parseInt(parts[0]);
+                String trainMak = parts[1];
+                String tipoRiel = parts[2];
+                double speed = Double.parseDouble(parts[3]);
+                String[] idsCarros = parts[4].split("-");
+
+                List<PassengerCar_212788287_EspinozaBarria> carrosTren = new ArrayList<>();
+                for(String idCarro : idsCarros){//agregamos carros a una lista en orden
+                    carrosTren.add(passengerCarsMap.get(Integer.parseInt(idCarro)));
+                }
+
+                Train_212788287_EspinozaBarria tren = new Train_212788287_EspinozaBarria(id,trainMak,tipoRiel,speed,carrosTren);
+                if(tren.isTrain()) {
+                    addTrain(tren);
+                    trainsMap.put(id,tren);
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n --- Se agregaron exitosamente los trenes a la red de metro al leer el archivo ---\n");
+    }
+
+    public void addAsignacionesTrainLineByTXT(String archivo){
+        try{
+            //leer el archivo
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                double idLine = Integer.parseInt(parts[0]);
+                String[] idsTrenes = parts[1].split("-");
+
+                List<Train_212788287_EspinozaBarria> trenes = new ArrayList<>();
+                for(String idtren : idsTrenes){//agregamos carros a una lista en orden
+                    System.out.println("idtren actual" +idtren);
+                    trenes.add(trainsMap.get(Integer.parseInt(idtren)));
+                    //assignTrainToLine(trainsMap.get(Integer.parseInt(idtren)),linesMap.get(idLine));
+                }
+                //AsignacionTrainLine_212788287_EspinozaBarria asignacionTL = new AsignacionTrainLine_212788287_EspinozaBarria(idLine,trenes);
+                //asignacionesTrainLine.add(asignacionTL);
+                System.out.println("asignacion:  "+ idLine+ "ternesd   " + trenes);
+                asignacionesTL.put(idLine,trenes);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n --- Se agregaron exitosamente las asignaciones tren-linea a la red de metro al leer el archivo ---\n");
+    }
+
+
+    public void addRecorridosByTXT(String archivo){
+        try {
+            //leer el archivo
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int idTren = Integer.parseInt(parts[0]);
+                int idDriver = Integer.parseInt(parts[1]);
+                int anio = Integer.parseInt(parts[2]);
+                int mes = Integer.parseInt(parts[3]);
+                int dia = Integer.parseInt(parts[4]);
+                int hora = Integer.parseInt(parts[5]);
+                int min = Integer.parseInt(parts[6]);
+                int idStation1 = Integer.parseInt(parts[7]);
+                int idStation2 = Integer.parseInt(parts[8]);
+
+                assignDriverToTrain(trainsMap.get(idTren),driversMap.get(idDriver),new GregorianCalendar(anio,mes,dia,hora,min),
+                        stationsMap.get(idStation1),stationsMap.get(idStation2));
+
+                //RecorridoDriverTrain_212788287_EspinozaBarria recorridoAux =
+                //        new RecorridoDriverTrain_212788287_EspinozaBarria(trainsMap.get(idTren),driversMap.get(idDriver),new GregorianCalendar(anio,mes,dia,hora,min), stationsMap.get(idStation1),stationsMap.get(idStation2));
+                //recorridosDriverTrain.add(recorridoAux);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n --- Se agregaron exitosamente los recorridos a la red de metro al leer el archivo ---\n");
+    }
 
 
 }

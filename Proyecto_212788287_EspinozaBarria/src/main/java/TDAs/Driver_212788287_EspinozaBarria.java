@@ -20,7 +20,7 @@ public class Driver_212788287_EspinozaBarria {
      * Requerimiento Funcional 16
      * @param id Identificador (int) del conductor Driver
      * @param name Nombre (String) del conductor
-     * @param trainMaker Frabricante de los trenes que sabe operar el conductor
+     * @param trainMaker Fabricante de los trenes que sabe operar el conductor
      */
     public Driver_212788287_EspinozaBarria(int id, String name, String trainMaker) {
         this.id = id;

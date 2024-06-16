@@ -7,12 +7,12 @@ import java.util.List;
  * AsignacionesTrainLine es una clase que representa a un objeto que relaciona la ID de un Line con sus trenes
  * @author isaac
  * @version 1.0 Java 11
- * @since 2024-06-16
+ * @since 2024-06-15
  */
 public class AsignacionTrainLine_212788287_EspinozaBarria {
 
     //Atributos
-    private int idLine;
+    private double idLine;
     private List<Train_212788287_EspinozaBarria> trains;
 
 
@@ -23,7 +23,7 @@ public class AsignacionTrainLine_212788287_EspinozaBarria {
      * @param idLine Identificador (int) de una Line
      * @param trains Trenes asociados a la Line (List&lt;Train&gt;)
      */
-    public AsignacionTrainLine_212788287_EspinozaBarria(int idLine, List<Train_212788287_EspinozaBarria> trains) {
+    public AsignacionTrainLine_212788287_EspinozaBarria(double idLine, List<Train_212788287_EspinozaBarria> trains) {
         this.idLine = idLine;
         this.trains = trains;
     }
@@ -31,7 +31,7 @@ public class AsignacionTrainLine_212788287_EspinozaBarria {
 
     //Metodos
     //getters y setters
-    public int getIdLine() {
+    public double getIdLine() {
         return idLine;
     }
     public void setIdLine(int idLine) {

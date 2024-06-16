@@ -44,7 +44,7 @@ public class Section_212788287_EspinozaBarria {
         this.station2 = station2;
         this.distance = distance;
         this.cost = cost;
-        System.out.println("\n --- Se creo exitosamente el objeto Section ---\n");
+        System.out.println(" --- Se creo exitosamente el objeto Section ---");
     }
 
 

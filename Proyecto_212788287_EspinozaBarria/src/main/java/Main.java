@@ -1,11 +1,21 @@
 import TDAs.*;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.security.spec.RSAOtherPrimeInfo;
 import java.util.*;
 
 public class Main {
 
-
+/*
     public static void main(String[] args) {
+
+        //falta implementar menu y lectura de archivos
+        //No s[e como hacerlo porque tengo que crear objetos y almacenarlos en un variebles y algunas de estas deben ser
+        //ingresadas desde otros constructores :(  como al crear stations y despues al crear sections
+
 
 
         //Datos de prueba L1
@@ -165,14 +175,100 @@ public class Main {
 
 
 
+    }*/
 
 
 
 
 
+/*
+    public static void main(String[] args) {
+        //List<Station_212788287_EspinozaBarria> estaciones = new ArrayList<>();
+        List<Section_212788287_EspinozaBarria> secciones = new ArrayList<>();
+        Map<Integer, Station_212788287_EspinozaBarria> estacionesMap = new HashMap<>();
+        Map<Integer, Section_212788287_EspinozaBarria> seccionesMap = new HashMap<>();
 
+        try {
+            // Leer el archivo stations.txt
+            BufferedReader reader = new BufferedReader(new FileReader("stationsL1.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int id = Integer.parseInt(parts[0]);
+                String nombre = parts[1];
+                String tipo = parts[2];
+                int tiempo = Integer.parseInt(parts[3]);
 
+                Station_212788287_EspinozaBarria station = new Station_212788287_EspinozaBarria(id, nombre, tipo, tiempo);
+                //estaciones.add(station);
+                estacionesMap.put(id, station);
+            }
+            reader.close();
 
+            // Leer el archivo sections.txt
+            reader = new BufferedReader(new FileReader("sectionsL1.txt"));
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                int id = Integer.parseInt(parts[0]);
+                int estacion1Id = Integer.parseInt(parts[1]);
+                int estacion2Id = Integer.parseInt(parts[2]);
+                double distancia = Double.parseDouble(parts[3]);
+                double costo = Double.parseDouble(parts[4]);
+                Station_212788287_EspinozaBarria estacion1 = estacionesMap.get(estacion1Id);
+                Station_212788287_EspinozaBarria estacion2 = estacionesMap.get(estacion2Id);
+                Section_212788287_EspinozaBarria section = new Section_212788287_EspinozaBarria(estacion1, estacion2, distancia, costo);
+                //secciones.add(section);
+                seccionesMap.put(id, section);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        // Imprimir las estaciones
+        System.out.println("Estaciones:");
+        for (Station_212788287_EspinozaBarria station : estacionesMap.values()) {
+            System.out.println(station);
+        }
+
+        // Imprimir las secciones
+        System.out.println("\nSecciones:");
+        for (Section_212788287_EspinozaBarria section : seccionesMap.values()) {
+            System.out.println(section);
+        }
     }
+
+ */
+    public static void main(String[] args) {
+        Subway_212788287_EspinozaBarria sw = new Subway_212788287_EspinozaBarria(1,"METRO ISKAITO");
+        sw.addStationsByTXT("stations.txt");
+        sw.addSectionsByTXT("sections.txt");
+        sw.addLinesByTXT("lines.txt");
+        sw.addDriversByTXT("drivers.txt");
+        sw.addPassengerCarsByTXT("passengerCars.txt");
+        sw.addTrainsByTXT("trains.txt");
+        sw.addAsignacionesTrainLineByTXT("asignacionesTrainLine.txt");
+        sw.addRecorridosByTXT("recorridos.txt");
+
+        //for(Station_212788287_EspinozaBarria st : sw.stationsMap.values()){
+        //    System.out.println(st);
+        //}
+
+        //for(Section_212788287_EspinozaBarria sec : sw.sectionsMap.values()){
+        //    System.out.println(sec);
+        //}
+
+        //for(Line_212788287_EspinozaBarria li : sw.getLines()){
+        //    System.out.println(li);
+        //}
+
+        //for(Train_212788287_EspinozaBarria train : sw.getTrains()) {
+        //    System.out.println(train);
+        //}
+        System.out.println(sw);
+    }
+
+
+
+
 }

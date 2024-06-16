@@ -1,0 +1,146 @@
+101,San Pablo,c,90
+102,Neptuno,r,25
+103,Pajaritos,c,50
+104,Las Rejas,r,30
+105,Ecuador,r,30
+106,San Alberto Hurtado,r,30
+107,USACH,r,30
+108,Estacion Central,r,50
+109,Union Latinoamericana,r,30
+110,Republica,r,30
+111,Los Heroes,c,60
+112,La Moneda,r,30
+113,Universidad de Chile,c,50
+114,Santa Lucia,r,30
+115,Universidad Catolica,r,30
+116,Baquedano,c,50
+117,Salvador,r,30
+118,Manuel Montt,r,30
+119,Pedro de Valdivia,r,30
+120,Los Leones,c,50
+121,Tobalada,c,30
+122,El Golf,r,30
+123,Alcantara,r,30
+124,Escuela Militar,r,30
+125,Manquehue,r,30
+126,Hernando de Magallanes,r,30
+127,Los Dominicos,t,90
+128,Cochera,m,3600
+201,Vespucio Norte,t,90
+202,Zapadores,r,30
+203,Dorsal,r,30
+204,Einstein,r,30
+205,Cementerios,r,30
+206,Cerro Blanco,r,30
+207,Patronato,r,30
+208,Puente Cal y Canto,c,50
+209,Santa Ana,c,50
+210,Los Heroes,c,50
+211,Toesca,r,30
+212,Parque OHiggins,r,30
+213,Rondizzoni,r,30
+214,Franklin,c,50
+215,El Llano,r,30
+216,San Miguel,r,30
+217,Lo Vial,r,30
+218,Departamental,r,30
+219,Ciudad del Niño,r,30
+220,Lo Ovalle,r,30
+221,El Parron,r,30
+222,La Cisterna,c,50
+223,El Bosque,r,30
+224,Observatorio,r,30
+225,Copa Lo Martínez,r,30
+226,Hospital El Pino,t,90
+227,Mantencion L2,m,3600
+300,Mantencion L3,m,0
+301,Plaza Quilicura,t,90
+302,Lo Cruzat,r,30
+303,Ferrocarril,r,30
+304,Los Libertadores,r,30
+305,Cardenal Caro,r,30
+306,Vivaceta,r,30
+307,Conchali,r,30
+308,Plaza Chacabuco,r,30
+309,Hospitales,r,30
+310,Puente Cal y Canto,c,50
+311,Plaza de Armas,c,50
+312,Universidad de Chile,c,50
+313,Parque Almagro,r,30
+314,Matta,r,30
+315,Irarrazaval,c,50
+316,Monsenor Eyzaguirre,r,30
+317,Nunoa,c,50
+318,Chile Espana,r,30
+319,Villa Frei,r,30
+320,Plaza Egana,c,50
+321,Fernando Castillo Velasco,t,90
+401,Tobalaba,c,90
+402,Cristobal Colon,r,30
+403,Francisco Bilbao,r,30
+404,Principe de Gales,r,30
+405,Simon Bolivar,r,30
+406,Plaza Egana,c,50
+407,Los Orientales,r,30
+408,Grecia,r,30
+409,Los Presidentes,r,30
+410,Quilin,r,30
+411,Las Torres,r,30
+412,Macul,r,30
+413,Vicuna Mackenna,c,50
+414,Vicente Valdes,c,50
+415,Rojas Magallanes,r,30
+416,Trinidad,r,30
+417,San Jose de la Estrella,r,30
+418,Los Quillayes,r,30
+419,Elisa Correa,r,30
+420,Hospital Sotero del Rio,r,30
+421,Protectora de la Infancia,r,30
+422,Las Mercedes,r,30
+423,Plaza de Puente Alto,t,90
+491,Vicuna Mackenna,t,90
+492,Santa Julia,r,30
+493,La Granja,r,30
+494,Santa Rosa,r,30
+495,San Ramon,r,30
+496,La Cisterna,t,90
+501,Plaza de Maipu,t,90
+502,Santiago Bueras,r,30
+503,Del Sol,r,30
+504,Monte Tabor,r,30
+505,Las Parcelas,r,30
+506,Laguna Sur,r,30
+507,Barrancas,r,30
+508,Pudahuel,r,30
+509,San Pablo,c,50
+510,Lo Prado,r,30
+511,Blanqueado,r,30
+512,Gruta de Lourdes,r,30
+513,Quinta Normal,r,30
+514,Cumming,r,30
+515,Santa Ana,c,50
+516,Plaza de Armas,c,50
+517,Bellas Artes,r,30
+518,Baquedano,c,50
+519,Parque Bustamante,r,30
+520,Santa Isabel,r,30
+521,Irarrazaval,c,50
+522,Nuble,c,50
+523,Rodrigo de Araya,r,30
+524,Carlos Valdovinos,r,30
+525,Camino Agricola,r,30
+526,San Joaquin,r,30
+527,Pedrero,r,50
+528,Mirador,r,30
+529,Bellavista de La Florida,r,30
+530,Vicente Valdes,t,90
+601,Cerrillos,t,90
+602,Lo Valledor,r,40
+603,Presidente Pedro Aguirre Cerda,r,30
+604,Franklin,c,50
+605,Bio Bio,r,30
+606,Nuble,c,50
+607,Estadio Nacional,r,40
+608,Nunoa,c,50
+609,Ines de Suarez,r,30
+610,Los Leones,t,90
