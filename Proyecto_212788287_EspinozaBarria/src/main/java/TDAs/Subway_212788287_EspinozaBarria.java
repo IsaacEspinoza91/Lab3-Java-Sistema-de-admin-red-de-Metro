@@ -36,6 +36,7 @@ public class Subway_212788287_EspinozaBarria {
     public Subway_212788287_EspinozaBarria(int id, String nombre) {
         this.id = id;
         this.name = nombre;
+        System.out.println("\n --- Se creo exitosamente el objeto Subway ---\n");
     }
 
 
@@ -103,8 +104,9 @@ public class Subway_212788287_EspinozaBarria {
     public void addTrain(Train_212788287_EspinozaBarria train) {
         if(!trains.contains(train) && train.isTrain()) {
             trains.add(train);
+            System.out.println("\n --- Se agrego exitosamente el tren al metro en addTrain ---\n");
         }else{
-            System.out.println("El tren ingresado ya existe en el Subway");
+            System.out.println("El tren ingresado ya existe en el Subway. No se agrego el tren.");
         }
     }
 
@@ -117,6 +119,7 @@ public class Subway_212788287_EspinozaBarria {
     public void addTrain(List<Train_212788287_EspinozaBarria> listaTrenesIngresar){
         for(Train_212788287_EspinozaBarria trenActual : listaTrenesIngresar){
             addTrain(trenActual);
+            System.out.println("\n --- Se agrego exitosamente el tren al metro en addTrain ---\n");
         }
     }
 
@@ -129,8 +132,9 @@ public class Subway_212788287_EspinozaBarria {
     public void addLine(Line_212788287_EspinozaBarria line){
         if(!(lines.contains(line)) && line.isLine()) {
             lines.add(line);
+            System.out.println("\n --- Se agrego exitosamente el tren al metro en addLine ---\n");
         }else{
-            System.out.println("La linea ingresada ya existe en el Subway");
+            System.out.println("La linea ingresada ya existe en el Subway. No se agrego");
         }
     }
 
@@ -143,6 +147,7 @@ public class Subway_212788287_EspinozaBarria {
     public void addLine(List<Line_212788287_EspinozaBarria> listaLinesIngresar){
         for(Line_212788287_EspinozaBarria lineActual : listaLinesIngresar){
             addLine(lineActual);
+            System.out.println("\n --- Se agrego exitosamente el tren al metro en addLine ---\n");
         }
     }
 
@@ -155,6 +160,7 @@ public class Subway_212788287_EspinozaBarria {
     public void addDriver(Driver_212788287_EspinozaBarria driver){
         if(!drivers.contains(driver)) {
             drivers.add(driver);
+            System.out.println("\n --- Se agrego exitosamente el conductor al metro en addLine ---\n");
         }else{
             System.out.println("El driver ingresado ya existe en el Subway");
         }
@@ -169,12 +175,17 @@ public class Subway_212788287_EspinozaBarria {
     public void addDriver(List<Driver_212788287_EspinozaBarria> listaDrivers){
         for(Driver_212788287_EspinozaBarria driverActual : listaDrivers){
             addDriver(driverActual);
+            System.out.println("\n --- Se agrego exitosamente el conductor al metro en addLine ---\n");
         }
     }
 
+    /**
+     * Crea un string con toda la informacion existente en una red de metro.
+     * Requerimiento Funciona 21
+     * @return (String) con la informacion
+     */
     @Override
     public String toString(){
-        //imprimir
         String str1 = "\n\n\t\tInformacion del SUBWAY\n" + "Nombre: " + getName() + "\nID: " + getId();
         //String datos trenes
         String str2 = "\nLista de trenes:\n";
@@ -201,10 +212,16 @@ public class Subway_212788287_EspinozaBarria {
         for(RecorridoDriverTrain_212788287_EspinozaBarria reco :recorridosDriverTrain){
             str6 = str6 + "\tRecorridoDriverTrain:\n" + reco.toString() + "\n";
         }
+        System.out.println("\n --- Se creo exitosamente el String con la informacion de subway en toString ---\n");
         return str1 + str2 + str3 + str4 + str5 + str6 + "\n";
     }
 
-
+    /**
+     * Asigna un tren a una linea especifica dentro de una red de metro. Crea instancias de la clase AsignacionTrainLine.
+     * Requerimiento Funcional 22
+     * @param train Tren (Train) a asignar
+     * @param line Linea (Line) a asignar
+     */
     public void assignTrainToLine(Train_212788287_EspinozaBarria train, Line_212788287_EspinozaBarria line) {
         if(!train.isTrain() || !line.isLine()){ //verificar que train sea tren valido y line linea valida
             System.out.println("El tren o linea no son validas en construccion. No se realizo la asignacion");
@@ -233,7 +250,7 @@ public class Subway_212788287_EspinozaBarria {
                 List<Train_212788287_EspinozaBarria> trenesAux = asigActual.getTrains();
                 trenesAux.add(train);
                 asigActual.setTrains(trenesAux);
-                System.out.println("\n --- Se realizo la asignacion Tren-Linea correctamente ---\n");
+                System.out.println("\n --- Se realizo la asignacion Tren-Linea correctamente al metro en assignTrainToLine---\n");
                 return;
             }
         }
@@ -241,9 +258,20 @@ public class Subway_212788287_EspinozaBarria {
         AsignacionTrainLine_212788287_EspinozaBarria asig =
                 new AsignacionTrainLine_212788287_EspinozaBarria(line.getId(), new ArrayList<>(Arrays.asList(train)));
         asignacionesTrainLine.add(asig);
-        System.out.println("\n --- Se realizo la asignacion Tren-Linea correctamente ---\n");
+        System.out.println("\n --- Se realizo la asignacion Tren-Linea correctamente al metro en assignTrainToLine---\n");
     }
 
+    /**
+     * Asigna un Conductor a un recorrido determinado dentro de la red de metro. Crea instancias de la clase
+     * RecorridoDriverTrain. Utiliza la clase externa de java del paquete java.Utils.
+     * Requerimiento Funcional 23
+     * @param train Tren (Train) a asignar recorrido
+     * @param driver Conductor (Driver) a asignar recorrido
+     * @param tiempoInicio Fecha-Tiempo (GregorianCalendar) de partida para el recorrido. Clase perteneciente
+     * a java.utils.GregorianCalendar
+     * @param stInicio Estacion (Station) de inicio del recorrido
+     * @param stFinal Estacion (Station) de termino del recorrido
+     */
     public void assignDriverToTrain(Train_212788287_EspinozaBarria train, Driver_212788287_EspinozaBarria driver,
                                     GregorianCalendar tiempoInicio,Station_212788287_EspinozaBarria stInicio,
                                     Station_212788287_EspinozaBarria stFinal) {
@@ -258,33 +286,21 @@ public class Subway_212788287_EspinozaBarria {
         RecorridoDriverTrain_212788287_EspinozaBarria recorridoAux =
                 new RecorridoDriverTrain_212788287_EspinozaBarria(train, driver, tiempoInicio, stInicio, stFinal);
         recorridosDriverTrain.add(recorridoAux);
-        System.out.println("\n --- Se realizo la asignacion de recorrido Conductor-Tren correctamente ---\n");
+        System.out.println("\n --- Se realizo la asignacion de recorrido Conductor-Tren correctamente al metro en assignDriverToTrain---\n");
     }
 
+    /**
+     * Determina la informacion en String sobre la estacion mas cercana a un tren determinado en un recorrido segun un
+     * horario ingresado. La busqueda de la estacion la realiza la funcion externa getStationWhereIsTrain, la
+     * considera recorridos en ambos sentidos para las estaciones
+     * Requerimiento Funcional 24
+     * @param train Tren (Train) a consultar donde esta
+     * @param time Fecha/Tiempo (GregorianCalendar) a consultar donde esta el tren
+     * @return Informacion (String) de la estacion y la linea donde se encuentra el tren
+     */
     public String whereIsTrain(Train_212788287_EspinozaBarria train, GregorianCalendar time) {
-        int a=0, idLinea=-1;
-        int sumaParcialSegundos, segundosRecorridoSection = 0, segundosStation2Section = 0;
-        Line_212788287_EspinozaBarria lineAux = null;
-        RecorridoDriverTrain_212788287_EspinozaBarria recorridoAux = null;
-
-        //notar que un tren puede tener multiples recorridos, por lo que se tiene que buscar el adecuado al horario preguntado
-        //creamos lista con todos los recorridos de un tren en especifico
-        List<RecorridoDriverTrain_212788287_EspinozaBarria> recorridosDelTren = new ArrayList<>();
-        for(RecorridoDriverTrain_212788287_EspinozaBarria recorr : recorridosDriverTrain){
-            if(recorr.getTrain().equals(train)){
-                recorridosDelTren.add(recorr);
-            }
-        }
-        //buscamos recorrido mas cercano al ingresado
-        recorridoAux = recorridosDelTren.get(0);
-        long diferenciaMenorActual = time.getTimeInMillis() - recorridoAux.getInicialDate().getTimeInMillis();
-        for(RecorridoDriverTrain_212788287_EspinozaBarria recorridoActual : recorridosDelTren){
-            long diferenciaActual = time.getTimeInMillis() - recorridoActual.getInicialDate().getTimeInMillis();
-            if(diferenciaActual < diferenciaMenorActual){
-                diferenciaMenorActual = diferenciaActual;
-                recorridoAux = recorridoActual;
-            }
-        }
+        int idLinea =0;
+        Station_212788287_EspinozaBarria estacionEncontrada = getStationWhereIsTrain(train,time);
 
         //buscamos el id de linea segun los trenes asignados en asignacionesTrainLine
         for(AsignacionTrainLine_212788287_EspinozaBarria asignacionTL : asignacionesTrainLine){
@@ -292,64 +308,17 @@ public class Subway_212788287_EspinozaBarria {
                 idLinea = asignacionTL.getIdLine();
             }
         }
-        //buscamos la linea segun el id encontrado anteriormente
-        for(int u=0; u<lines.size(); u++){
-            if(lines.get(u).getId() == idLinea){
-                lineAux = lines.get(u);
-            }
-        }
-        //obtenemos secciones que efectivamente pertenecen al recorrido estipulado
-        List<Section_212788287_EspinozaBarria> subSectionsRecorridas =
-                lineAux.lineSubSectionsByNames(recorridoAux.getInicialStation().getName(),
-                        recorridoAux.getFinalStation().getName());
-
-
-        //analizar sentido de recorrido, si este condicional es true significa que la recorrido es inverso. Por lo
-        //que "invierte" la lista de sections y asi determinar la estacion donde se encuentra
-        if(!recorridoAux.getInicialStation().equals(subSectionsRecorridas.get(0).getStation1())){
-
-            List<Section_212788287_EspinozaBarria> subSectionsInvertidas = new ArrayList<>();
-            Section_212788287_EspinozaBarria sectAux = null;
-            for(Section_212788287_EspinozaBarria seccionAc : subSectionsRecorridas){
-                sectAux = new Section_212788287_EspinozaBarria(seccionAc.getStation2(),seccionAc.getStation1(),
-                        seccionAc.getDistance(), seccionAc.getCost());
-                subSectionsInvertidas.add(0,sectAux);//progresivamente se construye la lista inversa
-            }
-            //se copia la lista invertida en la lista a calcular el tiempo
-            subSectionsRecorridas = subSectionsInvertidas;
-        }
-
-
-        //obtener diferencia de horas en segundos
-        //long difHoraEnSeg = (time.getTime() -recorridoAux.getInicialDate().getTime())/1000;
-        long difHoraEnSeg = (time.getTimeInMillis() - recorridoAux.getInicialDate().getTimeInMillis())/1000;
-        if(difHoraEnSeg<=0){
-            return "Tiempo invalido, no se realizo busqueda";
-        }
-
-        //ahora recorremos las sections considerando tiempo de parada por estacion y tiempo de recorrido por section
-        //hasta llegar a difHoraEnSeg
-        a = 0;//reiniciamos indice
-        sumaParcialSegundos = subSectionsRecorridas.get(0).getStation1().getStopTime();//segundos de la estacion1 inicial
-        while(sumaParcialSegundos<=difHoraEnSeg && a<subSectionsRecorridas.size()){
-
-            //System.out.println("mientras     " + sumaParcialSegundos + "<=" + difHoraEnSeg +" y " + a +"<" + subSectionsRecorridas.size());
-            //System.out.println(subSectionsRecorridas.get(a));
-
-            segundosRecorridoSection = (int) ((subSectionsRecorridas.get(a).getDistance() / train.getSpeed()) * 3600);
-            segundosStation2Section = subSectionsRecorridas.get(a).getStation2().getStopTime();
-            sumaParcialSegundos = sumaParcialSegundos + segundosRecorridoSection + segundosStation2Section;
-            a++;
-        }
-
-        //Ahora, la Station en la posicion a de las sections de la linea es la Station mas cercana en el tiempo determinado
-        System.out.println("\n --- Se encontro el tren correctamente en whereIsTrain ---\n");
-        Section_212788287_EspinozaBarria seccionEncontrado = subSectionsRecorridas.get(a-1);
-
-        return "El tren se encuentra en la Estacion " + seccionEncontrado.getStation2().getName() +" de la linea ID:" + idLinea;
+        System.out.println("\n --- Se encontro el tren correctamente en el metro en whereIsTrain ---\n");
+        return "El tren se encuentra cerda de la Estacion  {" + estacionEncontrada +"}    de la linea ID:" + idLinea;
     }
 
-
+    /**
+     * Busca la Estacion mas cercana a un tren a un recorrido determinado segun un horario ingresado. Considera
+     * caso de recorrido normal de las sections y el caso de recorrido inverso
+     * @param train Tren (Train) a consultar donde esta
+     * @param time Fecha/Tiempo (GregorianCalendar) a consultar donde esta el tren
+     * @return Estacion (Station) mas cercana al tren el horario ingresado
+     */
     public Station_212788287_EspinozaBarria getStationWhereIsTrain(Train_212788287_EspinozaBarria train, GregorianCalendar time){
         int a=0, idLinea=-1;
         int sumaParcialSegundos, segundosRecorridoSection = 0, segundosStation2Section = 0;
@@ -392,7 +361,6 @@ public class Subway_212788287_EspinozaBarria {
                 lineAux.lineSubSectionsByNames(recorridoAux.getInicialStation().getName(),
                         recorridoAux.getFinalStation().getName());
 
-
         //analizar sentido de recorrido, si este condicional es true significa que la recorrido es inverso. Por lo
         //que "invierte" la lista de sections y asi determinar la estacion donde se encuentra
         if(!recorridoAux.getInicialStation().equals(subSectionsRecorridas.get(0).getStation1())){
@@ -404,16 +372,14 @@ public class Subway_212788287_EspinozaBarria {
                         seccionAc.getDistance(), seccionAc.getCost());
                 subSectionsInvertidas.add(0,sectAux);//progresivamente se construye la lista inversa
             }
-            //se copia la lista invertida en la lista a calcular el tiempo
-            subSectionsRecorridas = subSectionsInvertidas;
+            subSectionsRecorridas = subSectionsInvertidas;//se copia la lista invertida en la lista a calcular el tiempo
         }
 
-
         //obtener diferencia de horas en segundos
-        //long difHoraEnSeg = (time.getTime() -recorridoAux.getInicialDate().getTime())/1000;
         long difHoraEnSeg = (time.getTimeInMillis() - recorridoAux.getInicialDate().getTimeInMillis())/1000;
         if(difHoraEnSeg<=0){
-            System.out.println( "Tiempo invalido, no se realizo busqueda");
+            System.out.println("Tiempo invalido, no se realizo busqueda");
+            return null;
         }
 
         //ahora recorremos las sections considerando tiempo de parada por estacion y tiempo de recorrido por section
@@ -421,10 +387,6 @@ public class Subway_212788287_EspinozaBarria {
         a = 0;//reiniciamos indice
         sumaParcialSegundos = subSectionsRecorridas.get(0).getStation1().getStopTime();//segundos de la estacion1 inicial
         while(sumaParcialSegundos<=difHoraEnSeg && a<subSectionsRecorridas.size()){
-
-            //System.out.println("mientras     " + sumaParcialSegundos + "<=" + difHoraEnSeg +" y " + a +"<" + subSectionsRecorridas.size());
-            //System.out.println(subSectionsRecorridas.get(a));
-
             segundosRecorridoSection = (int) ((subSectionsRecorridas.get(a).getDistance() / train.getSpeed()) * 3600);
             segundosStation2Section = subSectionsRecorridas.get(a).getStation2().getStopTime();
             sumaParcialSegundos = sumaParcialSegundos + segundosRecorridoSection + segundosStation2Section;
@@ -434,6 +396,79 @@ public class Subway_212788287_EspinozaBarria {
         //Ahora, la Station en la posicion a-1 de las sections de la linea es la Station mas cercana en el tiempo determinado
         return subSectionsRecorridas.get(a-1).getStation2();
     }
+
+    /**
+     * Crea una lista de las Estaciones proximas de un recorrido para un determinado tren segun un horario ingresado.
+     * Utiliza de forma auxiliar la funcion getStationWhereIsTrain
+     * @param train Tren (Train) a consultar
+     * @param date Fecha/Tiempo (GregorianCalendar) a consultar el recorrido proximo
+     * @return Lista de Estaciones (List&lt;Station&gt;)
+     */
+    public List<Station_212788287_EspinozaBarria> trainPath(Train_212788287_EspinozaBarria train, GregorianCalendar date){
+        int idLinea=-1;
+        Line_212788287_EspinozaBarria lineAux = null;
+        RecorridoDriverTrain_212788287_EspinozaBarria recorridoAux = null;
+        List<Station_212788287_EspinozaBarria> listaEstaciones = new ArrayList<>();
+
+        //buscamos recorrido Adecuando para tren en el horario determinado
+        List<RecorridoDriverTrain_212788287_EspinozaBarria> recorridosDelTren = new ArrayList<>();
+        for(RecorridoDriverTrain_212788287_EspinozaBarria recorr : recorridosDriverTrain){
+            if(recorr.getTrain().equals(train)){ recorridosDelTren.add(recorr); }
+        }
+        //buscamos recorrido mas cercano al ingresado
+        recorridoAux = recorridosDelTren.get(0);
+        long diferenciaMenorActual = date.getTimeInMillis() - recorridoAux.getInicialDate().getTimeInMillis();
+        for(RecorridoDriverTrain_212788287_EspinozaBarria recorridoActual : recorridosDelTren){
+            long diferenciaActual = date.getTimeInMillis() - recorridoActual.getInicialDate().getTimeInMillis();
+            if(diferenciaActual < diferenciaMenorActual){
+                diferenciaMenorActual = diferenciaActual;
+                recorridoAux = recorridoActual;
+            }
+        }
+
+        //buscamos el id de linea segun los trenes asignados en asignacionesTrainLine
+        for(AsignacionTrainLine_212788287_EspinozaBarria asignacionTL : asignacionesTrainLine){
+            if(asignacionTL.getTrains().contains(train)){
+                idLinea = asignacionTL.getIdLine();
+            }
+        }
+        //buscamos la linea segun el id encontrado anteriormente
+        for(int u=0; u<lines.size(); u++){
+            if(lines.get(u).getId() == idLinea){
+                lineAux = lines.get(u);
+            }
+        }
+
+        //obtenemos estacion mas cercana en el recorrido segun el horario
+        Station_212788287_EspinozaBarria stationCercana = getStationWhereIsTrain(train,date);
+
+        //obtenemos secciones futuras al recorrido den tren
+        List<Section_212788287_EspinozaBarria> subSectionsRecorridas =
+                lineAux.lineSubSectionsByNames(stationCercana.getName(), recorridoAux.getFinalStation().getName());
+
+        //condicion caso sentido inverso
+        if(!stationCercana.equals(subSectionsRecorridas.get(0).getStation1())){
+            List<Section_212788287_EspinozaBarria> subSectionsInvertidas = new ArrayList<>();
+            Section_212788287_EspinozaBarria sectAux = null;
+            for(Section_212788287_EspinozaBarria seccionAc : subSectionsRecorridas){
+                sectAux = new Section_212788287_EspinozaBarria(seccionAc.getStation2(),seccionAc.getStation1(),
+                        seccionAc.getDistance(), seccionAc.getCost());
+                subSectionsInvertidas.add(0,sectAux);//progresivamente se construye la lista inversa
+            }
+            subSectionsRecorridas = subSectionsInvertidas;//se copia la lista invertida en la lista a calcular el tiempo
+        }
+
+        //crear lista de estaciones para retornar
+        for(Section_212788287_EspinozaBarria seccionActFutura : subSectionsRecorridas){
+            listaEstaciones.add(seccionActFutura.getStation2());//en cada section se agrega la estacion2 futura
+        }
+
+        System.out.println("\n --- Se creo exitosamente la lista de estaciones futuras del recorrido en el metro en trainPath ---\n");
+        return listaEstaciones;
+    }
+
+
+
 
 
 

@@ -7,95 +7,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /*
-        Station_212788287_EspinozaBarria st1 = null;
-        try {
-            st1 = new Station_212788287_EspinozaBarria(1, "USACH", "t", -3);
-            //System.out.println(st1);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error al crear Station: "+ e.getMessage());;
-        }
-        Station_212788287_EspinozaBarria st1 = new Station_212788287_EspinozaBarria(1, "USACH", "t", 10);
-        Station_212788287_EspinozaBarria st2 = new Station_212788287_EspinozaBarria(2,"Estacion Central","r",230);
-        Station_212788287_EspinozaBarria st3 = new Station_212788287_EspinozaBarria(3,"ULA","c",100);
-        Station_212788287_EspinozaBarria st4 = new Station_212788287_EspinozaBarria(4,"Republica","c",99);
-        Station_212788287_EspinozaBarria st5 = new Station_212788287_EspinozaBarria(5,"Los Heroes","t",300);
-
-        Section_212788287_EspinozaBarria s1 = new Section_212788287_EspinozaBarria(st1,st2,6,8);
-        Section_212788287_EspinozaBarria s2 = new Section_212788287_EspinozaBarria(st2,st3,5,49);
-        Section_212788287_EspinozaBarria s3 = new Section_212788287_EspinozaBarria(st3,st4,2,343);
-        Section_212788287_EspinozaBarria s4 = new Section_212788287_EspinozaBarria(st4,st5,4,45);
-
-        //List<Section_212788287_EspinozaBarria> seccionesL1 = new ArrayList<>(Arrays.asList(s1,s2,s3,s4));
-        List<Section_212788287_EspinozaBarria> seccionesL1 = new ArrayList<>();
-
-
-
-        Line_212788287_EspinozaBarria l1 = new Line_212788287_EspinozaBarria(1,"Linea1","TipoA",seccionesL1);
-        l1.lineAddSection(s1);
-        l1.lineAddSection(s2);
-        l1.lineAddSection(s3);
-        l1.lineAddSection(s4);
-*/
-        /*
-        var alo = l1.lineLength();
-        System.out.println("LA DISTANCIA ES: " +alo);
-        List<Section_212788287_EspinozaBarria> subSec = l1.lineSubSectionsByNames("Republica","Estacion Central");
-        System.out.println(subSec);
-        var subDistancia = l1.lineSectionLength("Republica","Estacion Central");
-        System.out.println("\n\tLa subdistancia es  " + subDistancia);
-        var costoLinea = l1.lineCost();
-        System.out.println("\n\tCosto de Linea: " + costoLinea);
-
-        if (l1.isLine()){
-            System.out.println("verdasddd");
-        }else {
-            System.out.println("mfsdnafkdfs");
-        }
-
-
-        TerminalPCar_212788287_EspinozaBarria t1 = new TerminalPCar_212788287_EspinozaBarria(1,30,"MODELO1","Fender");
-        CentralPCar_212788287_EspinozaBarria  t2 = new CentralPCar_212788287_EspinozaBarria(2,40,"MODELO1","Fender");
-        CentralPCar_212788287_EspinozaBarria  t3 = new CentralPCar_212788287_EspinozaBarria(3,50,"MODELO1","Fender");
-        TerminalPCar_212788287_EspinozaBarria t4 = new TerminalPCar_212788287_EspinozaBarria(4,9,"MODELO1","Fender");
-
-        List<PassengerCar_212788287_EspinozaBarria> carros = new ArrayList<>(Arrays.asList(t1,t2,t3,t4));
-
-        Train_212788287_EspinozaBarria tren1 = new Train_212788287_EspinozaBarria(1,"Fender","TipoA",90,carros);
-        Train_212788287_EspinozaBarria tren2 = new Train_212788287_EspinozaBarria(2,"Fender","TipoB",200,carros);
-        tren2.removeCar(1);
-        if(tren1.isTrain()){
-            System.out.println("Tren valido");
-        }else{
-            System.out.println("Tren IN       no valido");
-        }
-
-        Driver_212788287_EspinozaBarria dri1 = new Driver_212788287_EspinozaBarria(1,"PedroPiedra","Fender");
-        Driver_212788287_EspinozaBarria dri2 = new Driver_212788287_EspinozaBarria(2,"David Bisbale","Fender");
-
-        Subway_212788287_EspinozaBarria sw1 = new Subway_212788287_EspinozaBarria(1,"Metro Isaac");
-        sw1.addLine(l1);
-        sw1.addTrain(tren1);
-        sw1.addTrain(tren2);
-        sw1.addDriver(dri1);
-        sw1.addDriver(dri2);
-
-
-        sw1.assignTrainToLine(tren1,l1);
-        //Date fecha1 = new Date(30,8,18,8,0); //Clase Date esta obsoleta segun Intellij
-
-        GregorianCalendar fecha2 = new GregorianCalendar(2024,8,18,8,0);
-        System.out.println(fecha2.getTimeInMillis());
-        sw1.assignDriverToTrain(tren1,dri1,fecha2,st1, st5);
-
-
-        System.out.printf(sw1.whereIsTrain(tren1,new GregorianCalendar(2024,8,18,8,14)));
-*/
-
-
-
-
-
 
         //Datos de prueba L1
         Station_212788287_EspinozaBarria st0 = new Station_212788287_EspinozaBarria(0, "San Pablo", "t", 90);
@@ -159,8 +70,18 @@ public class Main {
 
         //Linea 1
         List<Section_212788287_EspinozaBarria> seccionesL1 = new ArrayList<>(Arrays.asList(s1, s2, s3, s4, s5, s6,
-                s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27));
+                s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25));
         Line_212788287_EspinozaBarria l1 = new Line_212788287_EspinozaBarria(1,"Linea 1","100 R.E.",seccionesL1);
+        l1.lineAddSection(s26);
+        l1.lineAddSection(s27);
+        if(l1.isLine()){
+            System.out.println("L1 valida");
+        }
+        System.out.println("L1 largo total:" + l1.isLine() +"km");
+        System.out.printf("L1 largo entre USACH y Los Heroes", l1.lineSectionLength("USACH","Los Heroes"));
+        System.out.printf("L1 costo entre Los Heroes y Usach", l1.lineSectionLength("Los Heroes","USACH"));
+        System.out.println("L1 Costo total: " + l1.lineCost());
+        System.out.printf("L1 costo entre Los Heroes y Usach", l1.lineSectionCost("Los Heroes","USACH"));
 
         //creacion carros
         //para Tren 1
@@ -205,6 +126,7 @@ public class Main {
         if(t3.isTrain()){
             System.out.println("T3 valido");
         }
+        System.out.println("T1 capacidad: "+t1.fetchCapacity());
 
         //Conductores
         Driver_212788287_EspinozaBarria d0 = new Driver_212788287_EspinozaBarria(0,"IsakitoEspinoza","CAF");
@@ -218,16 +140,12 @@ public class Main {
 
         Subway_212788287_EspinozaBarria sw0 = new Subway_212788287_EspinozaBarria(0,"Metro de Santiago");
         sw0.addTrain(t1);
-        sw0.addTrain(t2);
-        sw0.addTrain(t3);
+        sw0.addTrain(new ArrayList<>(Arrays.asList(t2,t3)));
         sw0.addLine(l1);
         sw0.addDriver(d0);
         sw0.addDriver(d1);
         sw0.addDriver(d2);
-        sw0.addDriver(d3);
-        sw0.addDriver(d4);
-        sw0.addDriver(d5);
-        sw0.addDriver(d6);
+        sw0.addDriver(new ArrayList<>(Arrays.asList(d3,d4,d5,d6)));
 
         //Asignacion tren linea
         sw0.assignTrainToLine(t2,l1);
@@ -237,8 +155,22 @@ public class Main {
         sw0.assignDriverToTrain(t2,d2,new GregorianCalendar(2024,6,20,9,30),st20,st15);
         sw0.assignDriverToTrain(t2,d2,new GregorianCalendar(2024,6,20,19,0),st0,st19);
         String encontrada = sw0.whereIsTrain(t2, new GregorianCalendar(2024,6,20,19,34));
-        System.out.println(sw0);
         System.out.println(encontrada);
+        System.out.println(sw0);
+
+
+        System.out.println(sw0.trainPath(t2,new GregorianCalendar(2024,6,20,19,34)));
+
+
+
+
+
+
+
+
+
+
+
 
 
 
