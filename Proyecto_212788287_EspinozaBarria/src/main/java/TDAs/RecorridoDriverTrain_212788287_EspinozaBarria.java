@@ -1,6 +1,5 @@
 package TDAs;
 
-//import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -14,7 +13,6 @@ public class RecorridoDriverTrain_212788287_EspinozaBarria {
     //Atributos
     private Train_212788287_EspinozaBarria train;
     private Driver_212788287_EspinozaBarria driver;
-    //private Date inicialDate;
     private GregorianCalendar inicialDate;
     private Station_212788287_EspinozaBarria inicialStation;
     private Station_212788287_EspinozaBarria finalStation;
@@ -83,7 +81,7 @@ public class RecorridoDriverTrain_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        String salida = "\tID Tren: " + train.getId() + ", Conductor: " + driver.getName() + ", Fecha de Partida: " +
+        String salida = "ID Tren: " + train.getId() + ", Conductor: " + driver.getName() + ", Fecha de Partida: " +
                 inicialDate.get(GregorianCalendar.YEAR) + "/" + inicialDate.get(GregorianCalendar.MONTH) + "/" +
                 inicialDate.get(GregorianCalendar.DATE) + " ";
         //casos para dar formato a la hora dependiendo de la cantidad de digitos
@@ -98,7 +96,7 @@ public class RecorridoDriverTrain_212788287_EspinozaBarria {
             salida = salida + inicialDate.get(GregorianCalendar.MINUTE);
         }
         return  salida + ",  Estacion Inicio: " + inicialStation.getName() +
-                ", Estacion Fin: " + finalStation.getName() + "\n";
+                ", Estacion Fin: " + finalStation.getName() ;
     }
 
 

@@ -185,14 +185,14 @@ public class Train_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        String str = "\tTren:\n\t{ID: " + id + ", Fabricante:" + trainMaker + ", Tipo de Riel: "
+        String str = "\tTren:\n\t\t{ID: " + id + ", Fabricante:" + trainMaker + ", Tipo de Riel: "
                 + typeRail + ", Rapidez: " + speed + "}\n\t\tCarros:\n";
         for(PassengerCar_212788287_EspinozaBarria carro : carList){
             if(carro instanceof TerminalPCar_212788287_EspinozaBarria){
-                str = str + "\t\tID: " + carro.getId() + ", Capacidad: " + carro.getPassengerCapacity()
+                str = str + "\t\t\tID: " + carro.getId() + ", Capacidad: " + carro.getPassengerCapacity()
                         + ", Modelo: " + carro.getModel() + ", Fabricante: " + carro.getTrainMaker() + ", Tipo: Terminal\n";
             }else{
-                str = str + "\t\tID: " + carro.getId() + ", Capacidad: " + carro.getPassengerCapacity()
+                str = str + "\t\t\tID: " + carro.getId() + ", Capacidad: " + carro.getPassengerCapacity()
                         + ", Modelo: " + carro.getModel() + ", Fabricante: " + carro.getTrainMaker() + ", Tipo: Central\n";
             }
         }

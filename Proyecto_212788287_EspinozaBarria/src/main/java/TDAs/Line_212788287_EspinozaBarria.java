@@ -94,6 +94,9 @@ public class Line_212788287_EspinozaBarria {
      * @return SubLista de Sections (List&lt;Section&gt;)
      */
     public List<Section_212788287_EspinozaBarria> lineSubSectionsByNames(String nameSt1, String nameSt2){
+        if(nameSt1.equals(nameSt2)){
+            return null;
+        }
         List<Section_212788287_EspinozaBarria> seccionesEntreStations =  new ArrayList<>();
         boolean estacionInicialEncontrada = false;
         for(Section_212788287_EspinozaBarria seccionAct : sections){
@@ -310,9 +313,10 @@ public class Line_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        String str = "\t\tID: " + id + ", Nombre:" + name + ", Tipo de Riel: "+ typeRail +"\n\t\tSecciones:\n";
+        String str = "\t\tID: " + id + " " + name + ", Tipo de Riel: "+ typeRail +"\n\t\tSecciones:\n";
         for(Section_212788287_EspinozaBarria seccion : sections){
-            str = str + seccion.toString() + "\n";
+            str = str + "\t\t\t{ Estacion1: "+seccion.getStation1().getName()+", \t\tEstacion2: "+seccion.getStation2().getName()+
+                    ",  Distancia(Km)= "+seccion.getDistance()+", Costo= "+seccion.getCost()+" }\n";
         }
         return str;
     }
