@@ -118,6 +118,11 @@ public class Subway_212788287_EspinozaBarria {
 
 
     //Otros metodos
+
+    /**
+     * Agrega una estacion a la red de metro
+     * @param st Estacion (Station) a agregar
+     */
     public void addStation(Station_212788287_EspinozaBarria st){
         if(!stationsMap.containsValue(st)){
             stationsMap.put(st.getId(),st);
@@ -127,6 +132,13 @@ public class Subway_212788287_EspinozaBarria {
         }
     }
 
+    /**
+     * Agrega una seccion a la red de metro.
+     * Es usada en la funcion addSectionsByTXT dado que esta verifica la consistencia de la seccion, buscando la
+     * existencia de las estaciones en el metro
+     * @param idSec Id (int) de la seccion a agregar
+     * @param se Seccion (Section) a agregar
+     */
     public void addSection(int idSec, Section_212788287_EspinozaBarria se){
         if(!sectionsMap.containsValue(se)){
             sectionsMap.put(idSec,se);
@@ -136,6 +148,10 @@ public class Subway_212788287_EspinozaBarria {
         }
     }
 
+    /**
+     * Agrega un carro de pasajeros en la red de metro
+     * @param carro Carro de pasajeros (PassengerCar)
+     */
     public void addPassengerCar(PassengerCar_212788287_EspinozaBarria carro){
         if(!passengerCarsMap.containsValue(carro)){
             passengerCarsMap.put(carro.getId(),carro);
@@ -311,9 +327,11 @@ public class Subway_212788287_EspinozaBarria {
 
         //Verificar que el tren no este asignado a una linea anteriormente
         for(List<Train_212788287_EspinozaBarria> listaTrenesDeLinea : asignacionesTL.values()){
-            if(listaTrenesDeLinea.contains(train)){
-                System.out.println("El tren ya esta asignado a una linea en el Subway. No se realizo la asignacion nueva");
-                return;
+            for(Train_212788287_EspinozaBarria trenAct : listaTrenesDeLinea){
+                if(trenAct.getId()==train.getId()){
+                    System.out.println("El tren ya esta asignado a una linea en el Subway. No se realizo la asignacion nueva");
+                    return;
+                }
             }
         }
 
@@ -360,6 +378,15 @@ public class Subway_212788287_EspinozaBarria {
         if(recorridosDriverTrain.contains(recorridoAux)){
             System.out.println("El recorrido ya existe en el metro. No se realizo la asignacion");
             return;
+        }
+        for(RecorridoDriverTrain_212788287_EspinozaBarria recorridoActual : recorridosDriverTrain){
+            if(recorridoActual.getTrain().getId()==train.getId() && recorridoActual.getDriver().getName().equals(driver.getName()) &&
+                    recorridoActual.getInicialDate().equals(tiempoInicio) &&
+                    recorridoActual.getInicialStation().getName().equals(stInicio.getName()) &&
+                    recorridoActual.getFinalStation().getName().equals(stFinal.getName())){
+                System.out.println("El recorrido ya existe en el metro. No se realizo la asignacion");
+                return;
+            }
         }
         recorridosDriverTrain.add(recorridoAux);
         System.out.println(" --- Se realizo la asignacion de recorrido Conductor-Tren correctamente al metro en assignDriverToTrain---");
@@ -540,9 +567,11 @@ public class Subway_212788287_EspinozaBarria {
         return listaEstaciones;
     }
 
-
-
-
+    /**
+     * Agrega estaciones al metro leyendo la informacion de un archivo de texto.
+     * La ubicacion del archivo debe ser en la carpeta raiz del proyecto, es decir, al mismo nivel de la carperta scr
+     * @param archivo Nombre (String) del archivo con su extension .txt
+     */
     public void addStationsByTXT(String archivo){
         try {
             BufferedReader reader = new BufferedReader(new FileReader(archivo));//leer el archivo
@@ -564,6 +593,12 @@ public class Subway_212788287_EspinozaBarria {
 
     }
 
+    /**
+     * Agrega secciones al metro leyendo la informacion de un archivo de texto. Ademas verifica la existencia de los
+     * elementos pertinentes, estaciones, en el metro para funcionar
+     * La ubicacion del archivo debe ser en la carpeta raiz del proyecto, es decir, al mismo nivel de la carperta scr
+     * @param archivo Nombre (String) del archivo con su extension .txt
+     */
     public void addSectionsByTXT(String archivo){
         try {
             //leer el archivo
@@ -588,7 +623,12 @@ public class Subway_212788287_EspinozaBarria {
         System.out.println(" --- Se agregaron exitosamente las secciones a la red de metro al leer el archivo ---");
     }
 
-
+    /**
+     * Agrega lineas al metro leyendo la informacion de un archivo de texto. Analiza si las estaciones y secciones
+     * existen previamente en el metro. Solo agrega lineas validas
+     * La ubicacion del archivo debe ser en la carpeta raiz del proyecto, es decir, al mismo nivel de la carperta scr
+     * @param archivo Nombre (String) del archivo con su extension .txt
+     */
     public void addLinesByTXT(String archivo){
         try {
             //leer el archivo
@@ -616,7 +656,11 @@ public class Subway_212788287_EspinozaBarria {
         System.out.println(" --- Se agregaron exitosamente las lineas a la red de metro al leer el archivo ---");
     }
 
-
+    /**
+     * Agrega conductores al metro leyendo la informacion de un archivo de texto.
+     * La ubicacion del archivo debe ser en la carpeta raiz del proyecto, es decir, al mismo nivel de la carperta scr
+     * @param archivo Nombre (String) del archivo con su extension .txt
+     */
     public void addDriversByTXT(String archivo){
         try {
             //leer el archivo
@@ -637,7 +681,11 @@ public class Subway_212788287_EspinozaBarria {
         System.out.println(" --- Se agregaron exitosamente los conductores a la red de metro al leer el archivo ---");
     }
 
-
+    /**
+     * Agrega carros de pasajeros al metro leyendo la informacion de un archivo de texto.
+     * La ubicacion del archivo debe ser en la carpeta raiz del proyecto, es decir, al mismo nivel de la carperta scr
+     * @param archivo Nombre (String) del archivo con su extension .txt
+     */
     public void addPassengerCarsByTXT(String archivo){
         try {
             //leer el archivo
@@ -665,7 +713,12 @@ public class Subway_212788287_EspinozaBarria {
         System.out.println(" --- Se agregaron exitosamente los carros a la red de metro al leer el archivo ---");
     }
 
-
+    /**
+     * Agrega trenes al metro leyendo la informacion de un archivo de texto. Analizando la existencia de los carros
+     * en el metro.
+     * La ubicacion del archivo debe ser en la carpeta raiz del proyecto, es decir, al mismo nivel de la carperta scr
+     * @param archivo Nombre (String) del archivo con su extension .txt
+     */
     public void addTrainsByTXT(String archivo){
         try {
             //leer el archivo
@@ -694,6 +747,12 @@ public class Subway_212788287_EspinozaBarria {
         System.out.println(" --- Se agregaron exitosamente los trenes a la red de metro al leer el archivo ---");
     }
 
+    /**
+     * Agrega asignaciones Tren-Linea al metro leyendo la informacion de un archivo de texto. Analiza la existencia
+     * de la linea y el|los tren|trenes en el metro
+     * La ubicacion del archivo debe ser en la carpeta raiz del proyecto, es decir, al mismo nivel de la carperta scr
+     * @param archivo Nombre (String) del archivo con su extension .txt
+     */
     public void addAsignacionesTrainLineByTXT(String archivo){
         try{
             //leer el archivo
@@ -714,7 +773,12 @@ public class Subway_212788287_EspinozaBarria {
         System.out.println(" --- Se agregaron exitosamente las asignaciones tren-linea a la red de metro al leer el archivo ---");
     }
 
-
+    /**
+     * Agrega recorridos al metro leyendo la informacion de un archivo de texto. Analiza la existencia de los elementos
+     * pertinentes en el metro
+     * La ubicacion del archivo debe ser en la carpeta raiz del proyecto, es decir, al mismo nivel de la carperta scr
+     * @param archivo Nombre (String) del archivo con su extension .txt
+     */
     public void addRecorridosByTXT(String archivo){
         try {
             //leer el archivo
