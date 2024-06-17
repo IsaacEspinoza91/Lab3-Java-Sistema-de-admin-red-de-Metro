@@ -44,13 +44,13 @@
 216,San Miguel,r,30
 217,Lo Vial,r,30
 218,Departamental,r,30
-219,Ciudad del Niño,r,30
+219,Ciudad del Nino,r,30
 220,Lo Ovalle,r,30
 221,El Parron,r,30
 222,La Cisterna,c,50
 223,El Bosque,r,30
 224,Observatorio,r,30
-225,Copa Lo Martínez,r,30
+225,Copa Lo Martinez,r,30
 226,Hospital El Pino,t,90
 227,Mantencion L2,m,3600
 300,Mantencion L3,m,0
@@ -136,7 +136,7 @@
 530,Vicente Valdes,t,90
 601,Cerrillos,t,90
 602,Lo Valledor,r,40
-603,Presidente Pedro Aguirre Cerda,r,30
+603,Pedro Aguirre Cerda,r,30
 604,Franklin,c,50
 605,Bio Bio,r,30
 606,Nuble,c,50

@@ -26,7 +26,7 @@ public class Driver_212788287_EspinozaBarria {
         this.id = id;
         this.name = name;
         this.trainMaker = trainMaker;
-        System.out.println("\n --- Se creo exitosamente el objeto Driver ---\n");
+        System.out.println(" --- Se creo exitosamente el objeto Driver ---");
     }
 
 
@@ -58,6 +58,6 @@ public class Driver_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        return "{ID: " + id + ", Nombre: " + name +", Fabricante:" + trainMaker + "}";
+        return String.format("{ ID: %-3s   Nombre: %-25s    Controla trenes: %-10s }", id, name, trainMaker);
     }
 }

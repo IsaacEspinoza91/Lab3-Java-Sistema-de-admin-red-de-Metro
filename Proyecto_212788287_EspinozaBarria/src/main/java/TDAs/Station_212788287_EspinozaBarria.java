@@ -80,7 +80,7 @@ public class Station_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        return "{ID:" + id + ", Nombre:" + name + ", Tipo:" + type +
-                ", stopTime=" + stopTime + "}";
+        String st = String.format("{ ID: %-3s     Nombre: %-25s  Tipo: %-2s     Tiempo Parada: %-4s }", id, name, type, stopTime);
+        return st;
     }
 }

@@ -15,16 +15,6 @@ import java.util.*;
 public class Subway_212788287_EspinozaBarria {
 
     //Atributos
-
-    private List<Train_212788287_EspinozaBarria> trains = new ArrayList<>();
-    private List<Line_212788287_EspinozaBarria> lines = new ArrayList<>();
-    private List<Driver_212788287_EspinozaBarria> drivers = new ArrayList<>();
-    private List<AsignacionTrainLine_212788287_EspinozaBarria> asignacionesTrainLine = new ArrayList<>();
-
-
-
-
-
     private int id;
     private String name;
     private Map<Double, Line_212788287_EspinozaBarria> linesMap = new HashMap<>();
@@ -33,7 +23,6 @@ public class Subway_212788287_EspinozaBarria {
     private Map<Integer, PassengerCar_212788287_EspinozaBarria> passengerCarsMap = new HashMap<>();
     private Map<Integer, Station_212788287_EspinozaBarria> stationsMap = new HashMap<>();
     private Map<Integer, Section_212788287_EspinozaBarria> sectionsMap = new HashMap<>();
-
     private Map<Double, List<Train_212788287_EspinozaBarria>> asignacionesTL = new HashMap<>();
     private List<RecorridoDriverTrain_212788287_EspinozaBarria> recorridosDriverTrain  = new ArrayList<>();
 
@@ -49,7 +38,7 @@ public class Subway_212788287_EspinozaBarria {
     public Subway_212788287_EspinozaBarria(int id, String nombre) {
         this.id = id;
         this.name = nombre;
-        System.out.println("\n --- Se creo exitosamente el objeto Subway ---\n");
+        System.out.println(" --- Se creo exitosamente el objeto Subway ---");
     }
 
 
@@ -70,32 +59,53 @@ public class Subway_212788287_EspinozaBarria {
         this.name = name;
     }
 
-    public List<Train_212788287_EspinozaBarria> getTrains() {
-        return trains;
+    public Map<Double, Line_212788287_EspinozaBarria> getLinesMap() {
+        return linesMap;
     }
-    public void setTrains(List<Train_212788287_EspinozaBarria> trains) {
-        this.trains = trains;
-    }
-
-    public List<Line_212788287_EspinozaBarria> getLines() {
-        return lines;
-    }
-    public void setLines(List<Line_212788287_EspinozaBarria> lines) {
-        this.lines = lines;
+    public void setLinesMap(Map<Double, Line_212788287_EspinozaBarria> linesMap) {
+        this.linesMap = linesMap;
     }
 
-    public List<Driver_212788287_EspinozaBarria> getDrivers() {
-        return drivers;
+    public Map<Integer, Driver_212788287_EspinozaBarria> getDriversMap() {
+        return driversMap;
     }
-    public void setDrivers(List<Driver_212788287_EspinozaBarria> drivers) {
-        this.drivers = drivers;
+    public void setDriversMap(Map<Integer, Driver_212788287_EspinozaBarria> driversMap) {
+        this.driversMap = driversMap;
     }
 
-    public List<AsignacionTrainLine_212788287_EspinozaBarria> getAsignacionesTrainLine() {
-        return asignacionesTrainLine;
+    public Map<Integer, Train_212788287_EspinozaBarria> getTrainsMap() {
+        return trainsMap;
     }
-    public void setAsignacionesTrainLine(List<AsignacionTrainLine_212788287_EspinozaBarria> asignacionesTrainLine) {
-        this.asignacionesTrainLine = asignacionesTrainLine;
+    public void setTrainsMap(Map<Integer, Train_212788287_EspinozaBarria> trainsMap) {
+        this.trainsMap = trainsMap;
+    }
+
+    public Map<Integer, PassengerCar_212788287_EspinozaBarria> getPassengerCarsMap() {
+        return passengerCarsMap;
+    }
+    public void setPassengerCarsMap(Map<Integer, PassengerCar_212788287_EspinozaBarria> passengerCarsMap) {
+        this.passengerCarsMap = passengerCarsMap;
+    }
+
+    public Map<Integer, Station_212788287_EspinozaBarria> getStationsMap() {
+        return stationsMap;
+    }
+    public void setStationsMap(Map<Integer, Station_212788287_EspinozaBarria> stationsMap) {
+        this.stationsMap = stationsMap;
+    }
+
+    public Map<Integer, Section_212788287_EspinozaBarria> getSectionsMap() {
+        return sectionsMap;
+    }
+    public void setSectionsMap(Map<Integer, Section_212788287_EspinozaBarria> sectionsMap) {
+        this.sectionsMap = sectionsMap;
+    }
+
+    public Map<Double, List<Train_212788287_EspinozaBarria>> getAsignacionesTL() {
+        return asignacionesTL;
+    }
+    public void setAsignacionesTL(Map<Double, List<Train_212788287_EspinozaBarria>> asignacionesTL) {
+        this.asignacionesTL = asignacionesTL;
     }
 
     public List<RecorridoDriverTrain_212788287_EspinozaBarria> getRecorridosDriverTrain() {
@@ -108,7 +118,6 @@ public class Subway_212788287_EspinozaBarria {
 
 
     //Otros metodos
-
     public void addStation(Station_212788287_EspinozaBarria st){
         if(!stationsMap.containsValue(st)){
             stationsMap.put(st.getId(),st);
@@ -150,15 +159,6 @@ public class Subway_212788287_EspinozaBarria {
             System.out.println("El tren ingresado ya existe en el Subway. No se agrego el tren.");
         }
     }
-    /*
-    public void addTrain(Train_212788287_EspinozaBarria train) {
-        if(!trains.contains(train) && train.isTrain()) {
-            trains.add(train);
-            System.out.println("\n --- Se agrego exitosamente el tren al metro en addTrain ---\n");
-        }else{
-            System.out.println("El tren ingresado ya existe en el Subway. No se agrego el tren.");
-        }
-    }*/
 
     /**
      * Agrega un lista de trenes al Subway. En caso de que algun tren ya exista en el subway o no sea valido, no se
@@ -170,17 +170,8 @@ public class Subway_212788287_EspinozaBarria {
         for(Train_212788287_EspinozaBarria trenActual : listaTrenesIngresar){
             addTrain(trenActual);
         }
-        System.out.println(" --- Se agrego exitosamente los trenes validos de la lista al metro en addTrain ---\n");
+        System.out.println(" --- Se agrego exitosamente los trenes validos de la lista al metro en addTrain ---");
     }
-
-    /*
-    public void addTrain(List<Train_212788287_EspinozaBarria> listaTrenesIngresar){
-        for(Train_212788287_EspinozaBarria trenActual : listaTrenesIngresar){
-            addTrain(trenActual);
-        }
-        System.out.println(" --- Se agrego exitosamente los trenes validos de la lista al metro en addTrain ---\n");
-    }
-     */
 
     /**
      * Agrega una linea valida al Subway. En caso de linea ya existente en el subway, no se agrega y
@@ -197,17 +188,6 @@ public class Subway_212788287_EspinozaBarria {
         }
     }
 
-    /*
-        public void addLine(Line_212788287_EspinozaBarria line){
-        if(!(lines.contains(line)) && line.isLine()) {
-            lines.add(line);
-            System.out.println("\n --- Se agrego exitosamente la linea al metro en addLine ---\n");
-        }else{
-            System.out.println("La linea ingresada ya existe en el Subway. No se agrego");
-        }
-    }
-     */
-
     /**
      * Agrega un lista de lineas al Subway. En caso de que alguna linea ya exista en el subway, no se
      * agrega y se imprime en pantalla un mensaje indicando linea repetido.
@@ -218,18 +198,8 @@ public class Subway_212788287_EspinozaBarria {
         for(Line_212788287_EspinozaBarria lineActual : listaLinesIngresar){
             addLine(lineActual);
         }
-        System.out.println(" --- Se agrego exitosamente las lineas validas de la lista al metro en addTrain ---\n");
+        System.out.println(" --- Se agrego exitosamente las lineas validas de la lista al metro en addLine ---");
     }
-
-    /*
-        public void addLine(List<Line_212788287_EspinozaBarria> listaLinesIngresar){
-        for(Line_212788287_EspinozaBarria lineActual : listaLinesIngresar){
-            addLine(lineActual);
-        }
-        System.out.println(" --- Se agrego exitosamente las lineas validas de la lista al metro en addTrain ---\n");
-    }
-     */
-
 
     /**
      * Agrega un conductor a un subway. En caso de que ya exista en el subway, no se agrega y se
@@ -240,22 +210,11 @@ public class Subway_212788287_EspinozaBarria {
     public void addDriver(Driver_212788287_EspinozaBarria driver){
         if(!driversMap.containsValue(driver)) {
             driversMap.put(driver.getId(), driver);
-            System.out.println(" --- Se agrego exitosamente el conductor al metro en addLine ---");
+            System.out.println(" --- Se agrego exitosamente el conductor al metro en addDriver ---");
         }else{
             System.out.println("El driver ingresado ya existe en el Subway");
         }
     }
-
-    /*
-    public void addDriver(Driver_212788287_EspinozaBarria driver){
-        if(!drivers.contains(driver)) {
-            drivers.add(driver);
-            System.out.println("\n --- Se agrego exitosamente el conductor al metro en addLine ---\n");
-        }else{
-            System.out.println("El driver ingresado ya existe en el Subway");
-        }
-    }
-     */
 
     /**
      * Agrega un lista de conductores al Subway. En caso de que algun conductor ya exista en el subway, no se
@@ -267,7 +226,7 @@ public class Subway_212788287_EspinozaBarria {
         for(Driver_212788287_EspinozaBarria driverActual : listaDrivers){
             addDriver(driverActual);
         }
-        System.out.println(" --- Se agrego exitosamente los conductores validos de la lista al metro en addTrain ---\n");
+        System.out.println(" --- Se agrego exitosamente los conductores validos de la lista al metro en addDriver ---");
     }
 
     /**
@@ -277,101 +236,57 @@ public class Subway_212788287_EspinozaBarria {
      */
     @Override
     public String toString(){
-        String str1 = "\n\n\t\tInformacion del SUBWAY\n" + "Nombre: " + getName() + "\nID: " + getId();
+        String str = "\n\n\t\tInformacion de la red de Metro\n" + "Nombre: " + getName() + "\nID: " + getId();
         //String datos trenes
-        String str2 = "\nLista de estaciones:\n";
+        str += "\nLista de estaciones:\n";
         for(Station_212788287_EspinozaBarria st : stationsMap.values()){
-            str2 += "\t\t" + st.toString() + "\n";
+            str += "\t\t" + st.toString() + "\n";
         }
 
-        str2 += "\nLista de secciones:\n";
+        str += "\nLista de secciones:\n";
         for(int sec : sectionsMap.keySet()){
-            str2 += "\t\t {ID:"+sec+", Estacion1:"+sectionsMap.get(sec).getStation1().getName()+
-                    ", \t\tEstacion2:"+sectionsMap.get(sec).getStation2().getName()+", Distancia(km)="+
-                    sectionsMap.get(sec).getDistance()+", Costo:"+sectionsMap.get(sec).getCost()+ "}\n";
+            str += String.format("\t\t{ ID: %-3s    Estacion1: %-25s   Estacion2: %-25s   Distancia(Km): %-4s   Costo: %-5s }\n",
+                    sec,sectionsMap.get(sec).getStation1().getName(),sectionsMap.get(sec).getStation2().getName(),
+                    sectionsMap.get(sec).getDistance(),sectionsMap.get(sec).getCost());
         }
 
-        str2 += "\nLista de lineas:\n";
+        str += "\nLista de lineas:\n";
         for(Line_212788287_EspinozaBarria line : linesMap.values()){
-            str2 +=  "\tLinea:\n"+line.toString() + "\n";
+            str +=  "\tLinea:\n"+line.toString() + "\n";
         }
 
-        str2 = str2 +"\nLista de trenes:\n";
+        str += "\nLista de carros:\n";
+        for(PassengerCar_212788287_EspinozaBarria pcar : passengerCarsMap.values()){
+            str += "\t\t" + pcar.toString() + "\n";
+        }
+
+        str += "\nLista de trenes:\n";
         for(Train_212788287_EspinozaBarria train : trainsMap.values()){
-            str2 = str2 + train.toString() + "\n";
+            str += train.toString() + "\n";
         }
 
-        String str3 = "\nLista de conductores:\n";
+        str += "\nLista de conductores:\n";
         for(Driver_212788287_EspinozaBarria driver : driversMap.values()){
-            str3 = str3 + "\t\t" + driver.toString() + "\n";
+            str += "\t" + driver.toString() + "\n";
         }
 
 
-        String str5 = "\nLista de asignaciones Trenes-Linea:\n";
-        //for(AsignacionTrainLine_212788287_EspinozaBarria asig : asignacionesTrainLine){
-        //    str5 = str5 + "\tAsignacionTrainLine:\n" + asig.toString() + "\n";
-        //}
-
+        str += "\nLista de asignaciones Trenes-Linea:\n";
         for(double idsLineWithTrains : asignacionesTL.keySet()){
-            str5 = str5 + "\tID Linea: " + idsLineWithTrains + ",      IDs Trenes:  [    ";
+            str += "\tID Linea: " + idsLineWithTrains + ",      IDs Trenes:  [    ";
             for(Train_212788287_EspinozaBarria trenAsignado : asignacionesTL.get(idsLineWithTrains)){
-                str5 = str5 + trenAsignado.getId() +"    ";
+                str += trenAsignado.getId() +"    ";
             }
-            str5 = str5 + "]\n";
+            str += "]\n";
         }
 
-        String str6 = "\nLista de recorridos Conductor-Tren:\n";
+        str += "\nLista de recorridos Conductor-Tren:\n";
         for(RecorridoDriverTrain_212788287_EspinozaBarria reco :recorridosDriverTrain){
-            str6 = str6 + "\t\t{" + reco.toString() + " }\n";
+            str += "\t{" + reco.toString() + " }\n";
         }
-        System.out.println("\n --- Se creo exitosamente el String con la informacion de subway en toString ---\n");
-        return str1 + str2 + str3  + str5 + str6 + "\n";
+        System.out.println(" --- Se creo exitosamente el String con la informacion de subway en toString ---");
+        return str+"\n";
     }
-
-
-
-    /*
-    public String toString(){
-        String str1 = "\n\n\t\tInformacion del SUBWAY\n" + "Nombre: " + getName() + "\nID: " + getId();
-        //String datos trenes
-        String str2 = "\nLista de trenes:\n";
-        for(Train_212788287_EspinozaBarria train : trains){
-            str2 = str2 + train.toString() + "\n";
-        }
-
-        String str3 = "Lista de conductores:\n";
-        for(Driver_212788287_EspinozaBarria driver : drivers){
-            str3 = str3 + "\tConductor:\n\t" + driver.toString() + "\n\n";
-        }
-
-        String str4 = "Lista de lineas:\n";
-        for(Line_212788287_EspinozaBarria line : lines){
-            str4 = str4 + "\tLinea: \n" + line.toString() + "\n";
-        }
-
-        String str5 = "Lista de asignaciones Trenes-Linea:\n";
-        //for(AsignacionTrainLine_212788287_EspinozaBarria asig : asignacionesTrainLine){
-        //    str5 = str5 + "\tAsignacionTrainLine:\n" + asig.toString() + "\n";
-        //}
-
-        for(double idsLineWithTrains : asignacionesTL.keySet()){
-            str5 = str5 + "\tID Linea: " + idsLineWithTrains + ",      IDs Trenes:  [    ";
-            for(Train_212788287_EspinozaBarria trenAsignado : asignacionesTL.get(idsLineWithTrains)){
-                str5 = str5 + trenAsignado.getId() +"    ";
-            }
-            str5 = str5 + "]\n";
-        }
-
-        String str6 = "\nLista de recorridos Conductor-Tren:\n";
-        for(RecorridoDriverTrain_212788287_EspinozaBarria reco :recorridosDriverTrain){
-            str6 = str6 + "\tRecorridoDriverTrain:\n" + reco.toString() + "\n";
-        }
-        System.out.println("\n --- Se creo exitosamente el String con la informacion de subway en toString ---\n");
-        return str1 + str2 + str3 + str4 + str5 + str6 + "\n";
-    }
-     */
-
-
 
     /**
      * Asigna un tren a una linea especifica dentro de una red de metro. Crea instancias de la clase AsignacionTrainLine.
@@ -393,13 +308,7 @@ public class Subway_212788287_EspinozaBarria {
             System.out.println("Incompatibilidad de tipos de riel. No se realizo la asignacion");
             return;
         }
-        //verificar que el tren no este asignado a una linea anteriormente
-        //for(AsignacionTrainLine_212788287_EspinozaBarria asignacionActual : asignacionesTrainLine){
-        //    if(asignacionActual.getTrains().contains(train)) {
-        //        System.out.println("El tren ya esta asignado a una linea en el Subway. No se realizo la asignacion nueva");
-        //        return;
-        //    }
-        //}
+
         //Verificar que el tren no este asignado a una linea anteriormente
         for(List<Train_212788287_EspinozaBarria> listaTrenesDeLinea : asignacionesTL.values()){
             if(listaTrenesDeLinea.contains(train)){
@@ -408,17 +317,6 @@ public class Subway_212788287_EspinozaBarria {
             }
         }
 
-        //caso en que ya habian asignaciones en la linea determinada
-        /*
-        for(AsignacionTrainLine_212788287_EspinozaBarria asigActual : asignacionesTrainLine){
-            if(asigActual.getIdLine() == line.getId()){
-                List<Train_212788287_EspinozaBarria> trenesAux = asigActual.getTrains();
-                trenesAux.add(train);
-                asigActual.setTrains(trenesAux);
-                System.out.println("\n --- Se realizo la asignacion Tren-Linea correctamente al metro en assignTrainToLine---\n");
-                return;
-            }
-        }*/
         //Caso en que ya habian asignaciones en la linea determinada
         for (double idsLineasDeAsignaciones : asignacionesTL.keySet()){
             if(line.getId() == idsLineasDeAsignaciones){//se encontro los trenes de la linea
@@ -431,11 +329,8 @@ public class Subway_212788287_EspinozaBarria {
         }
 
         //caso en que sea la primera asignacion de tren de una linea
-        //AsignacionTrainLine_212788287_EspinozaBarria asig =
-        //        new AsignacionTrainLine_212788287_EspinozaBarria(line.getId(), new ArrayList<>(Arrays.asList(train)));
-        //asignacionesTrainLine.add(asig);
         asignacionesTL.put(line.getId(), new ArrayList<>(Arrays.asList(train)));
-        System.out.println(" --- Se realizo la asignacion Tren-Linea correctamente al metro en assignTrainToLine---\n");
+        System.out.println(" --- Se realizo la asignacion Tren-Linea correctamente al metro en assignTrainToLine---");
     }
 
     /**
@@ -467,7 +362,7 @@ public class Subway_212788287_EspinozaBarria {
             return;
         }
         recorridosDriverTrain.add(recorridoAux);
-        System.out.println(" --- Se realizo la asignacion de recorrido Conductor-Tren correctamente al metro en assignDriverToTrain---\n");
+        System.out.println(" --- Se realizo la asignacion de recorrido Conductor-Tren correctamente al metro en assignDriverToTrain---");
     }
 
     /**
@@ -482,19 +377,12 @@ public class Subway_212788287_EspinozaBarria {
     public String whereIsTrain(int idTrencito, GregorianCalendar time) {
         double idLinea =0;
         Station_212788287_EspinozaBarria estacionEncontrada = getStationWhereIsTrain(idTrencito,time);
-
-        //buscamos el id de linea segun los trenes asignados en asignacionesTrainLine
-        //for(AsignacionTrainLine_212788287_EspinozaBarria asignacionTL : asignacionesTrainLine){
-        //    if(asignacionTL.getTrains().contains(trainsMap.get(idTrencito))){
-        //        idLinea = asignacionTL.getIdLine();
-        //    }
-        //}
         for(double idLi : asignacionesTL.keySet()){
             if(asignacionesTL.get(idLi).contains(trainsMap.get(idTrencito))){
                 idLinea = idLi;
             }
         }
-        System.out.println(" --- Se encontro el tren correctamente en el metro en whereIsTrain ---\n");
+        System.out.println(" --- Se encontro el tren correctamente en el metro en whereIsTrain ---");
         return "El tren se encuentra cerca de la Estacion  {" + estacionEncontrada +"}    de la linea ID:" + idLinea;
     }
 
@@ -521,46 +409,18 @@ public class Subway_212788287_EspinozaBarria {
                 recorridosDelTren.add(recorr);
             }
         }
-        //buscamos recorrido mas cercano al ingresado
-        /*
-        RecorridoDriverTrain_212788287_EspinozaBarria recorridoAux = recorridosDelTren.get(0);
-        long diferenciaMenorActual = time.getTimeInMillis() - recorridoAux.getInicialDate().getTimeInMillis();
-        System.out.println("dif menor1   "+ diferenciaMenorActual);
-        for(RecorridoDriverTrain_212788287_EspinozaBarria recorridoActual : recorridosDelTren){
-            long diferenciaActual = time.getTimeInMillis() - recorridoActual.getInicialDate().getTimeInMillis();
-            System.out.println("Dif actual  "+diferenciaActual);
-            if( 0<diferenciaActual && diferenciaActual < diferenciaMenorActual){
-                System.out.println("\n\t\t\t Caso     "+diferenciaActual+"  <   "+diferenciaMenorActual);
-                diferenciaMenorActual = diferenciaActual;
-                recorridoAux = recorridoActual;
-            }
-        }*/
+        //buscamos recorrido mas cercano al ingresado segun horario
         RecorridoDriverTrain_212788287_EspinozaBarria recorridoAux = null;
         long horaEnMiliSeg = time.getTimeInMillis();
         Long tiempoMasCercano = null;
         for(RecorridoDriverTrain_212788287_EspinozaBarria re : recorridosDelTren){
-            if(re.getInicialDate().getTimeInMillis() < horaEnMiliSeg){
+            if(re.getInicialDate().getTimeInMillis() <= horaEnMiliSeg){
                 if(tiempoMasCercano == null || re.getInicialDate().getTimeInMillis() > tiempoMasCercano){
                     tiempoMasCercano = re.getInicialDate().getTimeInMillis();
                     recorridoAux = re;
                 }
             }
         }
-
-
-        //System.out.println("Aca buscamos el recorrido cercanoo    "+recorridoAux);
-        //buscamos el id de linea segun los trenes asignados en asignacionesTrainLine
-        //for(AsignacionTrainLine_212788287_EspinozaBarria asignacionTL : asignacionesTrainLine){
-        //    if(asignacionTL.getTrains().contains(train)){
-        //        idLinea = asignacionTL.getIdLine();
-        //    }
-        //}
-        //buscamos la linea segun el id encontrado anteriormente
-        //for(int u=0; u<lines.size(); u++){
-        //    if(lines.get(u).getId() == idLinea){
-        //        lineAux = lines.get(u);
-        //    }
-        //}
 
         //buscamos la id de la linea segun los trenes asignados en asignacionesTL
         for(double idLi : asignacionesTL.keySet()){
@@ -570,7 +430,6 @@ public class Subway_212788287_EspinozaBarria {
         }
         lineAux = linesMap.get(idLinea);//buscamos la linea segun el id encontrado
 
-
         //obtenemos secciones que efectivamente pertenecen al recorrido estipulado
         List<Section_212788287_EspinozaBarria> subSectionsRecorridas =
                 lineAux.lineSubSectionsByNames(recorridoAux.getInicialStation().getName(), recorridoAux.getFinalStation().getName());
@@ -578,12 +437,11 @@ public class Subway_212788287_EspinozaBarria {
         //analizar sentido de recorrido, si este condicional es true significa que la recorrido es inverso. Por lo
         //que "invierte" la lista de sections y asi determinar la estacion donde se encuentra
         if(!recorridoAux.getInicialStation().equals(subSectionsRecorridas.get(0).getStation1())){
-
             List<Section_212788287_EspinozaBarria> subSectionsInvertidas = new ArrayList<>();
-            Section_212788287_EspinozaBarria sectAux = null;
+            Section_212788287_EspinozaBarria sectAux;
             for(Section_212788287_EspinozaBarria seccionAc : subSectionsRecorridas){
                 sectAux = new Section_212788287_EspinozaBarria(seccionAc.getStation2(),seccionAc.getStation1(),
-                        seccionAc.getDistance(), seccionAc.getCost());
+                        seccionAc.getDistance(), seccionAc.getCost(),false);
                 subSectionsInvertidas.add(0,sectAux);//progresivamente se construye la lista inversa
             }
             subSectionsRecorridas = subSectionsInvertidas;//se copia la lista invertida en la lista a calcular el tiempo
@@ -621,7 +479,6 @@ public class Subway_212788287_EspinozaBarria {
     public List<Station_212788287_EspinozaBarria> trainPath(int idTrencito, GregorianCalendar date){
         double idLinea=-1;
         Line_212788287_EspinozaBarria lineAux;
-        long diferenciaActual;
         List<Station_212788287_EspinozaBarria> listaEstaciones = new ArrayList<>();
         Train_212788287_EspinozaBarria train = trainsMap.get(idTrencito);
 
@@ -635,7 +492,7 @@ public class Subway_212788287_EspinozaBarria {
         long horaEnMiliSeg = date.getTimeInMillis();
         Long tiempoMasCercano = null;
         for(RecorridoDriverTrain_212788287_EspinozaBarria re : recorridosDelTren){
-            if(re.getInicialDate().getTimeInMillis() < horaEnMiliSeg){
+            if(re.getInicialDate().getTimeInMillis() <+ horaEnMiliSeg){
                 if(tiempoMasCercano == null || re.getInicialDate().getTimeInMillis() > tiempoMasCercano){
                     tiempoMasCercano = re.getInicialDate().getTimeInMillis();
                     recorridoAux = re;
@@ -656,19 +513,19 @@ public class Subway_212788287_EspinozaBarria {
         //obtenemos secciones futuras al recorrido den tren
         List<Section_212788287_EspinozaBarria> subSectionsRecorridas =
                 lineAux.lineSubSectionsByNames(stationCercana.getName(), recorridoAux.getFinalStation().getName());
-        //System.out.println("n1: " + stationCercana.getName() + " yy    " + recorridoAux.getFinalStation().getName());
-        //System.out.println(subSectionsRecorridas);
+
         if(subSectionsRecorridas == null){
             System.out.println("El tren ya termino su recorrido. No se crea lista de estaciones futuras.");
             return null;
         }
+
         //condicion caso sentido inverso
         if(!stationCercana.equals(subSectionsRecorridas.get(0).getStation1())){
             List<Section_212788287_EspinozaBarria> subSectionsInvertidas = new ArrayList<>();
             Section_212788287_EspinozaBarria sectAux = null;
             for(Section_212788287_EspinozaBarria seccionAc : subSectionsRecorridas){
                 sectAux = new Section_212788287_EspinozaBarria(seccionAc.getStation2(),seccionAc.getStation1(),
-                        seccionAc.getDistance(), seccionAc.getCost());
+                        seccionAc.getDistance(), seccionAc.getCost(),false);
                 subSectionsInvertidas.add(0,sectAux);//progresivamente se construye la lista inversa
             }
             subSectionsRecorridas = subSectionsInvertidas;//se copia la lista invertida en la lista a calcular el tiempo
@@ -679,7 +536,7 @@ public class Subway_212788287_EspinozaBarria {
             listaEstaciones.add(seccionActFutura.getStation2());//en cada section se agrega la estacion2 futura
         }
 
-        System.out.println(" --- Se creo exitosamente la lista de estaciones futuras del recorrido en el metro en trainPath ---\n");
+        System.out.println(" --- Se creo exitosamente la lista de estaciones futuras del recorrido en el metro en trainPath ---");
         return listaEstaciones;
     }
 
@@ -688,8 +545,7 @@ public class Subway_212788287_EspinozaBarria {
 
     public void addStationsByTXT(String archivo){
         try {
-            //leer el archivo
-            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));//leer el archivo
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -697,16 +553,14 @@ public class Subway_212788287_EspinozaBarria {
                 String nombre = parts[1];
                 String tipo = parts[2];
                 int tiempo = Integer.parseInt(parts[3]);
-
                 Station_212788287_EspinozaBarria station = new Station_212788287_EspinozaBarria(id, nombre, tipo, tiempo);
-                //stationsMap.put(id, station);
                 addStation(station);
             }
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(" --- Se agregaron exitosamente las estaciones a la red de metro al leer el archivo ---\n");
+        System.out.println(" --- Se agregaron exitosamente las estaciones a la red de metro al leer el archivo ---");
 
     }
 
@@ -724,15 +578,14 @@ public class Subway_212788287_EspinozaBarria {
                 double costo = Double.parseDouble(parts[4]);
                 Station_212788287_EspinozaBarria estacion1 = stationsMap.get(estacion1Id);//buscamos las stations en el subway
                 Station_212788287_EspinozaBarria estacion2 = stationsMap.get(estacion2Id);
-                Section_212788287_EspinozaBarria section = new Section_212788287_EspinozaBarria(estacion1, estacion2, distancia, costo);
-                //sectionsMap.put(id, section);
+                Section_212788287_EspinozaBarria section = new Section_212788287_EspinozaBarria(estacion1, estacion2, distancia, costo,true);
                 addSection(id,section);
             }
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(" --- Se agregaron exitosamente las secciones a la red de metro al leer el archivo ---\n");
+        System.out.println(" --- Se agregaron exitosamente las secciones a la red de metro al leer el archivo ---");
     }
 
 
@@ -752,17 +605,15 @@ public class Subway_212788287_EspinozaBarria {
                     //agregamos las sections a la linea creada actual
                     lineaMetro.lineAddSection(sectionsMap.get(Integer.parseInt(idSeccion)));//las sections ya deben estar en el subway
                 }
-
                 if(lineaMetro.isLine()) {
                     addLine(lineaMetro);
-                    //linesMap.put(id,lineaMetro);
                 }
             }
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(" --- Se agregaron exitosamente las lineas a la red de metro al leer el archivo ---\n");
+        System.out.println(" --- Se agregaron exitosamente las lineas a la red de metro al leer el archivo ---");
     }
 
 
@@ -778,14 +629,12 @@ public class Subway_212788287_EspinozaBarria {
                 String fabricanteTrenes = parts[2];
                 Driver_212788287_EspinozaBarria driverActual = new Driver_212788287_EspinozaBarria(id,nombre,fabricanteTrenes);
                 addDriver(driverActual);
-                //driversMap.put(id, driverActual);
-
             }
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(" --- Se agregaron exitosamente los conductores a la red de metro al leer el archivo ---\n");
+        System.out.println(" --- Se agregaron exitosamente los conductores a la red de metro al leer el archivo ---");
     }
 
 
@@ -803,11 +652,9 @@ public class Subway_212788287_EspinozaBarria {
                 String tipo = parts[4];
                 if(tipo.equals("t")){
                     TerminalPCar_212788287_EspinozaBarria carro = new TerminalPCar_212788287_EspinozaBarria(id,capacidad,modelo,tmaker);
-                    //passengerCarsMap.put(id,carro);
                     addPassengerCar(carro);
                 }else{
                     CentralPCar_212788287_EspinozaBarria carro = new CentralPCar_212788287_EspinozaBarria(id,capacidad,modelo,tmaker);
-                    //passengerCarsMap.put(id,carro);
                     addPassengerCar(carro);
                 }
             }
@@ -815,7 +662,7 @@ public class Subway_212788287_EspinozaBarria {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(" --- Se agregaron exitosamente los carros a la red de metro al leer el archivo ---\n");
+        System.out.println(" --- Se agregaron exitosamente los carros a la red de metro al leer el archivo ---");
     }
 
 
@@ -831,23 +678,20 @@ public class Subway_212788287_EspinozaBarria {
                 String tipoRiel = parts[2];
                 double speed = Double.parseDouble(parts[3]);
                 String[] idsCarros = parts[4].split("-");
-
                 List<PassengerCar_212788287_EspinozaBarria> carrosTren = new ArrayList<>();
                 for(String idCarro : idsCarros){//agregamos carros a una lista en orden
                     carrosTren.add(passengerCarsMap.get(Integer.parseInt(idCarro)));//buscamos los carros por ID en el subway
                 }
-
                 Train_212788287_EspinozaBarria tren = new Train_212788287_EspinozaBarria(id,trainMak,tipoRiel,speed,carrosTren);
                 if(tren.isTrain()) {
                     addTrain(tren);
-                    //trainsMap.put(id,tren);
                 }
             }
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(" --- Se agregaron exitosamente los trenes a la red de metro al leer el archivo ---\n");
+        System.out.println(" --- Se agregaron exitosamente los trenes a la red de metro al leer el archivo ---");
     }
 
     public void addAsignacionesTrainLineByTXT(String archivo){
@@ -867,7 +711,7 @@ public class Subway_212788287_EspinozaBarria {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(" --- Se agregaron exitosamente las asignaciones tren-linea a la red de metro al leer el archivo ---\n");
+        System.out.println(" --- Se agregaron exitosamente las asignaciones tren-linea a la red de metro al leer el archivo ---");
     }
 
 
@@ -887,7 +731,6 @@ public class Subway_212788287_EspinozaBarria {
                 int min = Integer.parseInt(parts[6]);
                 int idStation1 = Integer.parseInt(parts[7]);
                 int idStation2 = Integer.parseInt(parts[8]);
-
                 assignDriverToTrain(trainsMap.get(idTren),driversMap.get(idDriver),new GregorianCalendar(anio,mes,dia,hora,min),
                         stationsMap.get(idStation1),stationsMap.get(idStation2));//buscamos estaciones por ID en el subway
             }
@@ -895,7 +738,7 @@ public class Subway_212788287_EspinozaBarria {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(" --- Se agregaron exitosamente los recorridos a la red de metro al leer el archivo ---\n");
+        System.out.println(" --- Se agregaron exitosamente los recorridos a la red de metro al leer el archivo ---");
     }
 
 

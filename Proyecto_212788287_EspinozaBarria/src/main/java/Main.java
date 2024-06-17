@@ -24,8 +24,10 @@ public class Main {
 
         System.out.println(sw);
 
-        System.out.println(sw.whereIsTrain(2, new GregorianCalendar(2024,6,20,21,50)));
-        System.out.println(sw.trainPath(2,new GregorianCalendar(2024,6,20,21,50)));
+        System.out.println(sw.whereIsTrain(2, new GregorianCalendar(2024,6,20,21,40)));
+        System.out.println(sw.trainPath(2,new GregorianCalendar(2024,6,20,21,40)));
+
+
     }
 
 

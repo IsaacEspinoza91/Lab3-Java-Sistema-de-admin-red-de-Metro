@@ -30,7 +30,7 @@ public class Section_212788287_EspinozaBarria {
      */
     public Section_212788287_EspinozaBarria(Station_212788287_EspinozaBarria station1,
                                             Station_212788287_EspinozaBarria station2,
-                                            double distance, double cost) {
+                                            double distance, double cost,boolean imprimirEstado) {
         if (station1.equals(station2)){//verifica que las stations ingresadas no sean la misma
             throw new IllegalArgumentException("Las Stations no pueden ser iguales");
         }
@@ -44,7 +44,10 @@ public class Section_212788287_EspinozaBarria {
         this.station2 = station2;
         this.distance = distance;
         this.cost = cost;
-        System.out.println(" --- Se creo exitosamente el objeto Section ---");
+        if(imprimirEstado){
+            System.out.println(" --- Se creo exitosamente el objeto Section ---");
+        }//condicion para imprimir o no en pantalla, se usa por ejemplo en whereIsTrain para invertir la subLista
+        //y no sobre cargar la consola de info
     }
 
 
@@ -85,7 +88,8 @@ public class Section_212788287_EspinozaBarria {
 
     @Override
     public String toString() {
-        return "\t\t\tEstacion1->  " + station1 + ",        Estacion2->  " + station2 +
-                "\n\t\t\tDistancia (Km): " + distance + ", Costo: " + cost + "\n";
+        String st = String.format("{ Estacion1: %-25s   Estacion2: %-25s   Distancia(Km): %-4s   Costo: %-5s }\n",
+                station1.getName(),station2.getName(),distance,cost);
+        return st;
     }
 }
