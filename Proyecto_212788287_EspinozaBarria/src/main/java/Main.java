@@ -33,6 +33,7 @@ public class Main {
         final int SALIDA_MENU_PRINCIPAL = 4; //constante inmutable
 
         int opcion, opcionSubMenu1, opcionSubMenu2, opcionSubMenu3;
+        double seleccionIDLinea;
         do{
             printMenuPrincipal();
             opcion = inTeclado.nextInt();
@@ -152,6 +153,40 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Interacturo con el subway");
+
+                    do{
+                        printMenuOpcion3();
+                        opcionSubMenu3 = inTeclado.nextInt();
+                        switch(opcionSubMenu3){
+                            case 1:
+                                System.out.println("Por favor, ingrese la id de la linea requerida: ");
+                                seleccionIDLinea = inTeclado.nextDouble();
+                                System.out.println("\n\nLa linea: " + seleccionIDLinea + "tiene un largo de: " +
+                                        sw.getLinesMap().get(seleccionIDLinea).lineLength() + "Km\n\n");
+                                break;
+
+                            case 2:
+                                break;
+
+
+                            case 3:
+                                System.out.println("Por favor, ingrese la id de la linea requerida: ");
+                                seleccionIDLinea = inTeclado.nextDouble();
+                                System.out.println("\n\nLa linea: " + seleccionIDLinea + "tiene un costo total de: " +
+                                        sw.getLinesMap().get(seleccionIDLinea).lineCost() + "\n\n");
+                                break;
+
+                            case 12:
+                                System.out.println("Volviendo al Menu Principal");
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                break;
+                        }
+
+                    }while(opcionSubMenu3 != 12);
+
+
                     break;
                 case 4:
                     System.out.println("Saliendo del programa");
@@ -170,7 +205,7 @@ public class Main {
 
     private static void printMenuPrincipal() {
         System.out.println("### Sistema Metro - Inicio ###\n");
-        System.out.println("Opciones de creacion de la red de metro y simulacion de ejecucion\n\n");
+        System.out.println("Opciones de creacion de la red de metro y simulacion de ejecucion}n\n");
         System.out.println("\t1.  Cargar informacion del sistema de metro");
         System.out.println("\t2.  Visualizacion del sistema de metro");
         System.out.println("\t3.  Interactuar con el sistema de metro");
