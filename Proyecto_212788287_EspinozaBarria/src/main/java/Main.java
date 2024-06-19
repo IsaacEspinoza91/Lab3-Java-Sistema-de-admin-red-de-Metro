@@ -12,16 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
         Subway_212788287_EspinozaBarria sw = new Subway_212788287_EspinozaBarria(1,"Metro de Santigo");
-        //sw.addStationsByTXT("stations.txt");
-        //sw.addSectionsByTXT("sections.txt");
-        //sw.addLinesByTXT("lines.txt");
-        //sw.addDriversByTXT("drivers.txt");
-        //sw.addPassengerCarsByTXT("passengerCars.txt");
-        //sw.addTrainsByTXT("trains.txt");
-        //sw.addAsignacionesTrainLineByTXT("asignacionesTrainLine.txt");
-        //sw.addRecorridosByTXT("recorridos.txt");
+        System.out.println("\n\n\n\n");
 
-        //System.out.println(sw);
         //System.out.println(sw.whereIsTrain(2, new GregorianCalendar(2024,6,20,21,40)));
         //System.out.println(sw.trainPath(2,new GregorianCalendar(2024,6,20,21,40)));
 
@@ -32,17 +24,17 @@ public class Main {
         Scanner inTeclado = new Scanner(System.in);
         final int SALIDA_MENU_PRINCIPAL = 4; //constante inmutable
 
-        int opcion, opcionSubMenu1, opcionSubMenu2, opcionSubMenu3;
+        int opcion, opcionSubMenu1, opcionSubMenu2, opcionSubMenu3, seleccionIDTren, anioIngresado, mesIngresado,
+                diaIngresado, horaIngresado, minutosIngresado;
         double seleccionIDLinea;
+        String nombreEstacion1;
+        String nombreEstacion2;
         do{
             printMenuPrincipal();
             opcion = inTeclado.nextInt();
 
             switch(opcion){
                 case 1:
-                    System.out.println("Voy acargar info");
-
-
 
 
                     do{
@@ -85,10 +77,10 @@ public class Main {
                                 sw.addRecorridosByTXT("recorridos.txt");
                                 break;
                             case 10:
-                                System.out.println("Volviendo al Menu Principal");
+                                System.out.println("\nVolviendo al Menu Principal.\n");
                                 break;
                             default:
-                                System.out.println("Opcion no valida");
+                                System.out.println("\nOpcion no valida. Vuelva a intentar.\n");
                                 break;
                         }
 
@@ -99,7 +91,6 @@ public class Main {
 
 
                 case 2:
-                    System.out.println("Estoy visualizando la cosa");
 
 
                     do{
@@ -111,34 +102,34 @@ public class Main {
                                 System.out.println(sw);
                                 break;
                             case 2:
-                                System.out.println(sw.getStationsMap());
+                                System.out.println(sw.toStringStations());
                                 break;
                             case 3:
-                                System.out.println(sw.getSectionsMap());
+                                System.out.println(sw.toStringSections());
                                 break;
                             case 4:
-                                System.out.println(sw.getLinesMap());
+                                System.out.println(sw.toStringLines());
                                 break;
                             case 5:
-                                System.out.println(sw.getPassengerCarsMap());
+                                System.out.println(sw.toStringCars());
                                 break;
                             case 6:
-                                System.out.println(sw.getTrainsMap());
+                                System.out.println(sw.toStringTrains());
                                 break;
                             case 7:
-                                System.out.println(sw.getDriversMap());
+                                System.out.println(sw.toStringDrivers());
                                 break;
                             case 8:
-                                System.out.println(sw.getAsignacionesTL());
+                                System.out.println(sw.toStringAsignacionesTL());
                                 break;
                             case 9:
-                                System.out.println(sw.getRecorridosDriverTrain());
+                                System.out.println(sw.toStringRecorridos());
                                 break;
                             case 10:
-                                System.out.println("Volviendo al Menu Principal");
+                                System.out.println("\nVolviendo al Menu Principal.\n");
                                 break;
                             default:
-                                System.out.println("Opcion no valida");
+                                System.out.println("\nOpcion no valida. Vuelva a intentar.\n");
                                 break;
                         }
 
@@ -152,35 +143,143 @@ public class Main {
 
                     break;
                 case 3:
-                    System.out.println("Interacturo con el subway");
 
                     do{
                         printMenuOpcion3();
                         opcionSubMenu3 = inTeclado.nextInt();
                         switch(opcionSubMenu3){
                             case 1:
-                                System.out.println("Por favor, ingrese la id de la linea requerida: ");
+                                System.out.println("\nPor favor, ingrese la id de la linea requerida: ");
                                 seleccionIDLinea = inTeclado.nextDouble();
-                                System.out.println("\n\nLa linea: " + seleccionIDLinea + "tiene un largo de: " +
-                                        sw.getLinesMap().get(seleccionIDLinea).lineLength() + "Km\n\n");
+                                if(!sw.getLinesMap().containsKey(seleccionIDLinea)){
+                                    System.out.println("\n\nLa linea: "+seleccionIDLinea+" no existe en el metro. Vuelve a intentarlo\n");
+                                }else {
+                                    System.out.println("\n\nLa linea: " + seleccionIDLinea + " tiene un largo de: " +
+                                            sw.getLinesMap().get(seleccionIDLinea).lineLength() + " Km.\n");
+                                }
                                 break;
 
                             case 2:
+                                System.out.println("\nPor favor, ingrese la id de la linea requerida:");
+                                seleccionIDLinea = inTeclado.nextDouble();
+                                System.out.println("\nIngrese el nombre de una estacion: ");
+                                inTeclado.nextLine();//Consumimos el \n que produce el nextDouble
+                                nombreEstacion1 = inTeclado.nextLine();
+                                System.out.println("\nIngrese el nombre de la otra estacion: ");
+                                nombreEstacion2 = inTeclado.nextLine();
+                                System.out.println("\n\nEn la linea: " + seleccionIDLinea +", entre la estacion: "+ nombreEstacion1 +
+                                        " y la estacion: " + nombreEstacion2 +" hay un largo de: " +
+                                        sw.getLinesMap().get(seleccionIDLinea).lineSectionLength(nombreEstacion1,nombreEstacion2) + " Km.\n");
                                 break;
 
-
                             case 3:
-                                System.out.println("Por favor, ingrese la id de la linea requerida: ");
+                                System.out.println("\nPor favor, ingrese la id de la linea requerida: ");
                                 seleccionIDLinea = inTeclado.nextDouble();
-                                System.out.println("\n\nLa linea: " + seleccionIDLinea + "tiene un costo total de: " +
-                                        sw.getLinesMap().get(seleccionIDLinea).lineCost() + "\n\n");
+                                if(!sw.getLinesMap().containsKey(seleccionIDLinea)){
+                                    System.out.println("\n\nLa linea: "+seleccionIDLinea+" no existe en el metro. Vuelve a intentarlo.\n");
+                                }else{
+                                    System.out.println("\n\nLa linea: " + seleccionIDLinea + " tiene un costo total de: " +
+                                            sw.getLinesMap().get(seleccionIDLinea).lineCost() + " .\n");
+                                }
+                                break;
+                            case 4:
+                                System.out.println("\nPor favor, ingrese la id de la linea requerida:");
+                                seleccionIDLinea = inTeclado.nextDouble();
+                                System.out.println("\nIngrese el nombre de una estacion: ");
+                                inTeclado.nextLine();
+                                nombreEstacion1 = inTeclado.nextLine();
+                                System.out.println("\nIngrese el nombre de la otra estacion: ");
+                                nombreEstacion2 = inTeclado.nextLine();
+                                System.out.println("\n\nEn la linea: " + seleccionIDLinea +", entre la estacion: "+ nombreEstacion1 +
+                                        " y la estacion: " + nombreEstacion2 +" hay un costo de: " +
+                                        sw.getLinesMap().get(seleccionIDLinea).lineSectionCost(nombreEstacion1,nombreEstacion2) + " .\n");
+                                break;
+
+                            case 5:
+                                System.out.println("\nPor favor, ingrese la id de la linea requerida: ");
+                                seleccionIDLinea = inTeclado.nextDouble();
+                                if(!sw.getLinesMap().containsKey(seleccionIDLinea)){
+                                    System.out.println("\n\nLa linea: "+seleccionIDLinea+" no existe en el metro. Vuelve a intentarlo.\n");
+                                }else{
+                                    if(sw.getLinesMap().get(seleccionIDLinea).isLine()){
+                                        System.out.println("\n\nLa linea: " + seleccionIDLinea + " es valida. Todas sus estaciones estan conectadas y cumple " +
+                                                "con los criterios de tipos de estaciones, ya sea para linea regular o linea circular.\n");
+                                    }else{
+                                        System.out.println("La linea: " + seleccionIDLinea + " no es valida.");
+                                    }
+                                }
+                                break;
+
+                            case 8:
+                                System.out.println("\nPor favor, ingrese la id del tren requerido: ");
+                                seleccionIDTren = inTeclado.nextInt();
+                                if(!sw.getTrainsMap().containsKey(seleccionIDTren)){
+                                    System.out.println("\n\nEl tren: "+seleccionIDTren+" no existe en el metro. Vuelve a intentarlo.\n");
+                                }else {
+                                    if (sw.getTrainsMap().get(seleccionIDTren).isTrain()) {
+                                        System.out.println("\n\nEl tren: " + seleccionIDTren + " es valido. Todos sus carros son del mismo modelo y fabricante; " +
+                                                "ademas, cumple con el criterio de armando considerando a trenes terminales y centrales.\n\n");
+                                    } else {
+                                        System.out.println("El tren: " + seleccionIDTren + " no es valido.\n");
+                                    }
+                                }
+                                break;
+
+                            case 9:
+                                System.out.println("\nPor favor, ingrese la id del tren requerido: ");
+                                seleccionIDTren = inTeclado.nextInt();
+                                if(!sw.getTrainsMap().containsKey(seleccionIDTren)){
+                                    System.out.println("\n\nEl tren: "+seleccionIDTren+" no existe en el metro. Vuelve a intentarlo.\n");
+                                }else {
+                                    System.out.println("\n\nEl tren: " + seleccionIDTren + " tiene una capacidad maxima de: " +
+                                            sw.getTrainsMap().get(seleccionIDTren).fetchCapacity() + " pasajeros.\n");
+                                }
+                                break;
+
+                            case 10:
+                                System.out.println("\nPor favor, ingrese la id del tren requerido: ");
+                                seleccionIDTren = inTeclado.nextInt();
+                                System.out.println("A continuacion, ingrese los datos de la fecha.\nIngrese el anio: ");
+                                anioIngresado = inTeclado.nextInt();
+                                System.out.println("Ingrese el mes: ");
+                                mesIngresado = inTeclado.nextInt();
+                                System.out.println("Ingrese el dia: ");
+                                diaIngresado = inTeclado.nextInt();
+                                System.out.println("Ingrese la hora: ");
+                                horaIngresado = inTeclado.nextInt();
+                                System.out.println("Ingrese los minutos: ");
+                                minutosIngresado = inTeclado.nextInt();
+                                System.out.println(sw.whereIsTrain(seleccionIDTren,
+                                        new GregorianCalendar(anioIngresado,mesIngresado,diaIngresado,horaIngresado,minutosIngresado,minutosIngresado)));
+                                break;
+
+                            case 11:
+                                System.out.println("\nPor favor, ingrese la id del tren requerido: ");
+                                seleccionIDTren = inTeclado.nextInt();
+                                System.out.println("A continuacion, ingrese los datos de la fecha.\nIngrese el anio: ");
+                                anioIngresado = inTeclado.nextInt();
+                                System.out.println("Ingrese el mes: ");
+                                mesIngresado = inTeclado.nextInt();
+                                System.out.println("Ingrese el dia: ");
+                                diaIngresado = inTeclado.nextInt();
+                                System.out.println("Ingrese la hora: ");
+                                horaIngresado = inTeclado.nextInt();
+                                System.out.println("Ingrese los minutos: ");
+                                minutosIngresado = inTeclado.nextInt();
+                                List<Station_212788287_EspinozaBarria> listaReco = sw.trainPath(seleccionIDTren,
+                                        new GregorianCalendar(anioIngresado,mesIngresado,diaIngresado,horaIngresado,minutosIngresado,minutosIngresado));
+                                System.out.println("\n\nEstaciones Futuras:");
+                                for(Station_212788287_EspinozaBarria stationActual : listaReco){
+                                    System.out.println("\t "+stationActual.getName());
+                                }
                                 break;
 
                             case 12:
-                                System.out.println("Volviendo al Menu Principal");
+                                System.out.println("\nVolviendo al Menu Principal\n");
                                 break;
+
                             default:
-                                System.out.println("Opcion no valida");
+                                System.out.println("\nOpcion no valida. Vuelve a intentarlo.\n");
                                 break;
                         }
 
@@ -189,7 +288,7 @@ public class Main {
 
                     break;
                 case 4:
-                    System.out.println("Saliendo del programa");
+                    System.out.println("\nSaliendo del programa\n");
                     break;
                 default:
                     System.out.println("La opcion "+opcion+" no existe. Por favor, vuelve a intentarlo.");
@@ -204,8 +303,8 @@ public class Main {
 
 
     private static void printMenuPrincipal() {
-        System.out.println("### Sistema Metro - Inicio ###\n");
-        System.out.println("Opciones de creacion de la red de metro y simulacion de ejecucion}n\n");
+        System.out.println("\n\n### Sistema Metro - Inicio ###\n");
+        System.out.println("Opciones de creacion de la red de metro y simulacion de ejecucion\n\n");
         System.out.println("\t1.  Cargar informacion del sistema de metro");
         System.out.println("\t2.  Visualizacion del sistema de metro");
         System.out.println("\t3.  Interactuar con el sistema de metro");
@@ -214,7 +313,7 @@ public class Main {
     }
 
     private static void printMenuOpcion1() {
-        System.out.println("### Sistema Metro - Cargar informacion del sistema de metro ###\n");
+        System.out.println("\n\n### Sistema Metro - Cargar informacion del sistema de metro ###\n");
         System.out.println("Definiciones estructurales de su sistema subido desde archivos\n\n");
         System.out.println("\t1.  Creacion automatica del sistema de metro. Carga todos los archivos txt.");
         System.out.println("\t       En caso de no seleccionar esta opcion, se debera carga manualmente las estaciones, las secciones, las lineas,");
@@ -234,7 +333,7 @@ public class Main {
 
 
     private static void printMenuOpcion2() {
-        System.out.println("### Sistema Metro - Visualización del estado actual del sistema de metros  ###\n");
+        System.out.println("\n\n### Sistema Metro - Visualización del estado actual del sistema de metros  ###\n");
         System.out.println("Definiciones estructurales de su sistema subido desde archivos\n\n");
         System.out.println("\t1.  Desplegar en pantalla el estado actual de todo el sistema de metro");
         System.out.println("\t2.  Desplegar en pantalla solo las estaciones del sistema de metro");
@@ -251,10 +350,10 @@ public class Main {
 
 
     private static void printMenuOpcion3() {
-        System.out.println("### Sistema Metro - Interactuar con el sistema de metros ###\n");
+        System.out.println("\n\n### Sistema Metro - Interactuar con el sistema de metros ###\n");
         System.out.println("A traves de las siguientes opciones usted puede interactuar con la red de metros cargada previamente por todos los archivos de texto.\n\n");
         System.out.println("\t1.  lineLength: obtener el largo total de una linea.");
-        System.out.println("\t2.  lineSectionLength: determinar el tracto entre una estacion origen y final.");
+        System.out.println("\t2.  lineSectionLength: determinar el largo entre una estacion origen y final.");
         System.out.println("\t3.  lineCost: determinar el costo total de recorrer una linea.");
         System.out.println("\t4.  lineSectionCost: determinar el costo de un trayecto entre estación origen y final.");
         System.out.println("\t5.  isLine: verificar si una linea cumple con las restricciones especificadas.");

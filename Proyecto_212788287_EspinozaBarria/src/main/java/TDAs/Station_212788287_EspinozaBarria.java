@@ -37,7 +37,7 @@ public class Station_212788287_EspinozaBarria {
         this.stopTime = stopTime;
         this.type = type;
         this.name = name;
-        System.out.println(" --- Se creo exitosamente el objeto Station ---");
+        System.out.println("\033[0;31m" + " --- Se creo exitosamente el objeto Station ---" + "\033[0m");//color rojo
     }
 
 

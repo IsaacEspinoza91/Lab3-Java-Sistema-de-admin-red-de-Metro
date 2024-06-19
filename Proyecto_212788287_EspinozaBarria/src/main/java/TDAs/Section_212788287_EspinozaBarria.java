@@ -45,7 +45,7 @@ public class Section_212788287_EspinozaBarria {
         this.distance = distance;
         this.cost = cost;
         if(imprimirEstado){
-            System.out.println(" --- Se creo exitosamente el objeto Section ---");
+            System.out.println("\033[0;31m"+" --- Se creo exitosamente el objeto Section ---"+"\033[0m");
         }//condicion para imprimir o no en pantalla, se usa por ejemplo en whereIsTrain para invertir la subLista
         //y no sobre cargar la consola de info
     }

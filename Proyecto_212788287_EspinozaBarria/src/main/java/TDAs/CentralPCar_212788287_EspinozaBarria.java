@@ -22,7 +22,7 @@ public class CentralPCar_212788287_EspinozaBarria extends PassengerCar_212788287
      */
     public CentralPCar_212788287_EspinozaBarria(int id, int passengerCapacity, String model, String trainMaker) {
         super(id, passengerCapacity, model, trainMaker);
-        System.out.println(" --- Se creo exitosamente el objeto PassengerCar de tipo Central ---");
+        System.out.println("\033[0;31m"+" --- Se creo exitosamente el objeto PassengerCar de tipo Central ---"+"\033[0");
     }
 
     //Metodos
