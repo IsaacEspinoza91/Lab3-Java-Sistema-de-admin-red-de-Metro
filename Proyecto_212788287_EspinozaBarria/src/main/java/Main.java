@@ -234,43 +234,67 @@ public class Main {
                                 if(!sw.getTrainsMap().containsKey(seleccionIDTren)){
                                     System.out.println("\n\nEl tren: "+seleccionIDTren+" no existe en el metro. Vuelve a intentarlo.\n");
                                 }else {
-                                    System.out.println("\nAhora se solicitan los datos para crear un nuevo carro: ");
-                                    boolean idExistente = true;
-                                    idCarro = -1;
-                                    while(idExistente != false){
-                                        System.out.println("Ingrese la id de carro:");
-                                        idCarro = inTeclado.nextInt();
-                                        if(!sw.getPassengerCarsMap().containsKey(idCarro)){
-                                            idExistente = false;
-                                        }else{
-                                            System.out.println("Ya existe un tren con id: " + idCarro + ". Vuelve a intentarlo.\n");
-                                        }
-                                    }
-                                    System.out.println("Ingrese la capacidad maxima de pasajeros: ");
-                                    capacidadPasajeros = inTeclado.nextInt();
-                                    inTeclado.nextLine();
-                                    System.out.println("Ingrese el modelo del carro: ");
-                                    modeloCarro = inTeclado.nextLine();
-                                    System.out.println("Ingrese el fabricante del carro: ");
-                                    makerCarro = inTeclado.nextLine();
-
                                     PassengerCar_212788287_EspinozaBarria carroTrencito = null;
-                                    boolean tipoCarroValido = false;
-                                    while(tipoCarroValido != true) {//condicional para ingresar tipo de carro valido
-                                        System.out.println("Ingrese el tipo de carro: (terminal o central): ");
-                                        String tipo = inTeclado.nextLine();
-                                        if (tipo.equals("terminal")) {
-                                            carroTrencito = new TerminalPCar_212788287_EspinozaBarria(idCarro, capacidadPasajeros, modeloCarro, makerCarro);
-                                            tipoCarroValido = true;
-                                        } else if (tipo.equals("central")) {
-                                            carroTrencito = new CentralPCar_212788287_EspinozaBarria(idCarro, capacidadPasajeros, modeloCarro, makerCarro);
-                                            tipoCarroValido = true;
-                                        } else {
-                                            System.out.println("El tipo de carro: " + tipo + " no es valido. Vuelve a intentarlo.\n");
+                                    int eleccionCarroNuevo;
+                                    idCarro = -1;
+
+                                    System.out.println("\nDesea agregar carro nuevo o uno existente sin asignacion en el metro: (1. carro nuevo, 2. carro existente): ");
+                                    eleccionCarroNuevo = inTeclado.nextInt();
+                                    if(eleccionCarroNuevo==1) {
+                                        System.out.println("\nAhora se solicitan los datos para crear un nuevo carro: ");
+                                        boolean idExistente = true;
+                                        while (idExistente != false) {
+                                            System.out.println("Ingrese la id de carro:");
+                                            idCarro = inTeclado.nextInt();
+                                            if (!sw.getPassengerCarsMap().containsKey(idCarro)) {
+                                                idExistente = false;
+                                            } else {
+                                                System.out.println("Ya existe un tren con id: " + idCarro + ". Vuelve a intentarlo.\n");
+                                            }
                                         }
+                                        System.out.println("Ingrese la capacidad maxima de pasajeros: ");
+                                        capacidadPasajeros = inTeclado.nextInt();
+                                        inTeclado.nextLine();
+                                        System.out.println("Ingrese el modelo del carro: ");
+                                        modeloCarro = inTeclado.nextLine();
+                                        System.out.println("Ingrese el fabricante del carro: ");
+                                        makerCarro = inTeclado.nextLine();
+
+                                        boolean tipoCarroValido = false;
+                                        while (tipoCarroValido != true) {//condicional para ingresar tipo de carro valido
+                                            System.out.println("Ingrese el tipo de carro: (terminal o central): ");
+                                            String tipo = inTeclado.nextLine();
+                                            if (tipo.equals("terminal")) {
+                                                carroTrencito = new TerminalPCar_212788287_EspinozaBarria(idCarro, capacidadPasajeros, modeloCarro, makerCarro);
+                                                tipoCarroValido = true;
+                                            } else if (tipo.equals("central")) {
+                                                carroTrencito = new CentralPCar_212788287_EspinozaBarria(idCarro, capacidadPasajeros, modeloCarro, makerCarro);
+                                                tipoCarroValido = true;
+                                            } else {
+                                                System.out.println("El tipo de carro: " + tipo + " no es valido. Vuelve a intentarlo.\n");
+                                            }
+                                        }
+                                    }else if(eleccionCarroNuevo==2){
+                                        System.out.println(sw.toStringCars());
+                                        boolean idSinAsignar = false;
+                                        while(idSinAsignar != true){
+                                            System.out.println("Por favor ingrese la id de carro sin asignar: ");
+                                            idCarro = inTeclado.nextInt();
+                                            if(!sw.getPassengerCarsMap().containsKey(idCarro)){
+                                                System.out.println("El carro con id: "+idCarro+" no existe en el metro. Vuelve a intentarlo.\n");
+                                            }else if(!sw.getPassengerCarsMap().get(idCarro).getAsignadoATren()){//el tren ingresado esta disponible
+                                                idSinAsignar = true;
+                                            }else{
+                                                System.out.println("El carro con id: "+idCarro+" ya esta asignado a otro tren. Vuelve a intentarlo.\n");
+                                            }
+                                        }
+                                        carroTrencito = sw.getPassengerCarsMap().get(idCarro);
                                     }
+
+
 
                                     sw.getTrainsMap().get(seleccionIDTren).addCar(carroTrencito,posicionCarro);
+                                    carroTrencito.setAsignadoATren(true);//cambiamos parametro de asignado a tren    a verdadero
                                     Map<Integer, PassengerCar_212788287_EspinozaBarria> carrosActuales = sw.getPassengerCarsMap();
                                     carrosActuales.put(idCarro,carroTrencito);
                                     sw.setPassengerCarsMap(carrosActuales);
@@ -298,6 +322,8 @@ public class Main {
                                 if(!sw.getTrainsMap().containsKey(seleccionIDTren)){
                                     System.out.println("\n\nEl tren: "+seleccionIDTren+" no existe en el metro. Vuelve a intentarlo.\n");
                                 }else {
+                                    PassengerCar_212788287_EspinozaBarria carroAEliminar = sw.getTrainsMap().get(seleccionIDTren).getCarList().get(posicionCarro);
+                                    carroAEliminar.setAsignadoATren(false);         //modificamos el estado de asignado a tren
                                     sw.getTrainsMap().get(seleccionIDTren).removeCar(posicionCarro);
                                     //indicar validez del tren modificado
                                     if(sw.getTrainsMap().get(seleccionIDTren).isTrain()){

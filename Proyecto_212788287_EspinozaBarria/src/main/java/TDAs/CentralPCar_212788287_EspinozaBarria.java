@@ -28,7 +28,8 @@ public class CentralPCar_212788287_EspinozaBarria extends PassengerCar_212788287
     //Metodos
     @Override
     public String toString() {
-        String a = String.format("{ ID: %-4s   Capacidad: %-4s   Modelo: %-10s   Fabricante: %-8s   Tipo: Central  }",id,passengerCapacity,model,trainMaker);
+        String a = String.format("{ ID: %-4s   Capacidad: %-4s   Modelo: %-10s   Fabricante: %-8s   Tipo: Central     Asignado: %-5s }",
+                id,passengerCapacity,model,trainMaker,asignadoATren);
         return a;
     }
 

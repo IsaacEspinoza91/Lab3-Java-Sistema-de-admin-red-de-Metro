@@ -13,6 +13,7 @@ public abstract class PassengerCar_212788287_EspinozaBarria {
     protected int passengerCapacity;
     protected String model;
     protected String trainMaker;
+    protected boolean asignadoATren;
 
 
 
@@ -32,6 +33,7 @@ public abstract class PassengerCar_212788287_EspinozaBarria {
         this.passengerCapacity = passengerCapacity;
         this.model = model;
         this.trainMaker = trainMaker;
+        this.asignadoATren = false;
     }
 
     //Metodos
@@ -63,4 +65,7 @@ public abstract class PassengerCar_212788287_EspinozaBarria {
     public void setTrainMaker(String trainMaker) {
         this.trainMaker = trainMaker;
     }
+
+    public boolean getAsignadoATren() { return asignadoATren; }
+    public void setAsignadoATren(boolean asignadoATren) { this.asignadoATren = asignadoATren;}
 }

@@ -169,10 +169,24 @@ public class Subway_212788287_EspinozaBarria {
      */
     public void addTrain(Train_212788287_EspinozaBarria train) {
         if(!trainsMap.containsValue(train) && train.isTrain()) {
-            trainsMap.put(train.getId(), train);
-            System.out.println("\033[0;31m"+" --- Se agrego exitosamente el tren al metro en addTrain ---"+"\033[0m");
+            boolean carrosDisponibles = true;
+            for(PassengerCar_212788287_EspinozaBarria carro : train.getCarList()){
+                if(passengerCarsMap.get(carro.getId()).getAsignadoATren()){//CASO el carro ya esta asignado a otro tren
+                    carrosDisponibles = false;
+                }
+            }
+            if(carrosDisponibles){
+                trainsMap.put(train.getId(), train);
+                for(PassengerCar_212788287_EspinozaBarria carroAux : train.getCarList()){//cambiamos valor de asignados de los carros
+                    passengerCarsMap.get(carroAux.getId()).setAsignadoATren(true);
+                }
+                System.out.println("\033[0;31m"+" --- Se agrego exitosamente el tren al metro en addTrain ---"+"\033[0m");
+            }else{
+                System.out.println("El tren tiene carros ya asignados a otros trenes. No se agrego el tren al metro.");
+            }
+
         }else{
-            System.out.println("El tren ingresado ya existe en el Subway. No se agrego el tren.");
+            System.out.println("El tren ingresado ya existe en el Subway. No se agrego el tren al metro.");
         }
     }
 
