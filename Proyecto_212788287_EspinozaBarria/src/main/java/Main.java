@@ -12,23 +12,16 @@ public class Main {
 
     public static void main(String[] args) {
         Subway_212788287_EspinozaBarria sw = new Subway_212788287_EspinozaBarria(1,"Metro de Santigo");
-        System.out.println("\n\n\n\n");
-
-        //System.out.println(sw.whereIsTrain(2, new GregorianCalendar(2024,6,20,21,40)));
-        //System.out.println(sw.trainPath(2,new GregorianCalendar(2024,6,20,21,40)));
-
+        System.out.println("\n\n\n");
 
 
 
 
         Scanner inTeclado = new Scanner(System.in);
-        final int SALIDA_MENU_PRINCIPAL = 4; //constante inmutable
-
         int opcion, opcionSubMenu1, opcionSubMenu2, opcionSubMenu3, seleccionIDTren, anioIngresado, mesIngresado,
-                diaIngresado, horaIngresado, minutosIngresado;
+                diaIngresado, horaIngresado, minutosIngresado, posicionCarro, auxPrintearTrenes, idCarro, capacidadPasajeros;
         double seleccionIDLinea;
-        String nombreEstacion1;
-        String nombreEstacion2;
+        String nombreEstacion1, nombreEstacion2, modeloCarro, makerCarro;
         do{
             printMenuPrincipal();
             opcion = inTeclado.nextInt();
@@ -151,7 +144,7 @@ public class Main {
                             case 1:
                                 System.out.println("\nPor favor, ingrese la id de la linea requerida: ");
                                 seleccionIDLinea = inTeclado.nextDouble();
-                                if(!sw.getLinesMap().containsKey(seleccionIDLinea)){
+                                if(!sw.getLinesMap().containsKey(seleccionIDLinea)){//condicional de existencia
                                     System.out.println("\n\nLa linea: "+seleccionIDLinea+" no existe en el metro. Vuelve a intentarlo\n");
                                 }else {
                                     System.out.println("\n\nLa linea: " + seleccionIDLinea + " tiene un largo de: " +
@@ -167,9 +160,18 @@ public class Main {
                                 nombreEstacion1 = inTeclado.nextLine();
                                 System.out.println("\nIngrese el nombre de la otra estacion: ");
                                 nombreEstacion2 = inTeclado.nextLine();
-                                System.out.println("\n\nEn la linea: " + seleccionIDLinea +", entre la estacion: "+ nombreEstacion1 +
-                                        " y la estacion: " + nombreEstacion2 +" hay un largo de: " +
-                                        sw.getLinesMap().get(seleccionIDLinea).lineSectionLength(nombreEstacion1,nombreEstacion2) + " Km.\n");
+                                //condicional de que exista la linea y que las estaciones pertenezcan a ella
+                                if(!sw.getLinesMap().containsKey(seleccionIDLinea)){
+                                    System.out.println("\n\nLa linea: "+seleccionIDLinea+" no existe en el metro. Vuelve a intentarlo\n");
+                                }else if(!sw.getLinesMap().get(seleccionIDLinea).verificarStationInLine(nombreEstacion1)){
+                                    System.out.println("\n\nLa estacion: "+nombreEstacion1+" no existe en la linea: "+seleccionIDLinea+". Vuelve a intentarlo\n");
+                                }else if(!sw.getLinesMap().get(seleccionIDLinea).verificarStationInLine(nombreEstacion2)){
+                                    System.out.println("\n\nLa estacion: "+nombreEstacion2+" no existe en la linea: "+seleccionIDLinea+". Vuelve a intentarlo\n");
+                                }else{
+                                    System.out.println("\n\nEn la linea: " + seleccionIDLinea + ", entre la estacion: " + nombreEstacion1 +
+                                            " y la estacion: " + nombreEstacion2 + " hay un largo de: " +
+                                            sw.getLinesMap().get(seleccionIDLinea).lineSectionLength(nombreEstacion1, nombreEstacion2) + " Km.\n");
+                                }
                                 break;
 
                             case 3:
@@ -186,13 +188,21 @@ public class Main {
                                 System.out.println("\nPor favor, ingrese la id de la linea requerida:");
                                 seleccionIDLinea = inTeclado.nextDouble();
                                 System.out.println("\nIngrese el nombre de una estacion: ");
-                                inTeclado.nextLine();
+                                inTeclado.nextLine();//Consumimos el \n que produce el nextDouble
                                 nombreEstacion1 = inTeclado.nextLine();
                                 System.out.println("\nIngrese el nombre de la otra estacion: ");
                                 nombreEstacion2 = inTeclado.nextLine();
-                                System.out.println("\n\nEn la linea: " + seleccionIDLinea +", entre la estacion: "+ nombreEstacion1 +
-                                        " y la estacion: " + nombreEstacion2 +" hay un costo de: " +
-                                        sw.getLinesMap().get(seleccionIDLinea).lineSectionCost(nombreEstacion1,nombreEstacion2) + " .\n");
+                                if(!sw.getLinesMap().containsKey(seleccionIDLinea)){
+                                    System.out.println("\n\nLa linea: "+seleccionIDLinea+" no existe en el metro. Vuelve a intentarlo\n");
+                                }else if(!sw.getLinesMap().get(seleccionIDLinea).verificarStationInLine(nombreEstacion1)){
+                                    System.out.println("\n\nLa estacion: "+nombreEstacion1+" no existe en la linea: "+seleccionIDLinea+". Vuelve a intentarlo\n");
+                                }else if(!sw.getLinesMap().get(seleccionIDLinea).verificarStationInLine(nombreEstacion2)){
+                                    System.out.println("\n\nLa estacion: "+nombreEstacion2+" no existe en la linea: "+seleccionIDLinea+". Vuelve a intentarlo\n");
+                                }else {
+                                    System.out.println("\n\nEn la linea: " + seleccionIDLinea + ", entre la estacion: " + nombreEstacion1 +
+                                            " y la estacion: " + nombreEstacion2 + " hay un costo de: " +
+                                            sw.getLinesMap().get(seleccionIDLinea).lineSectionCost(nombreEstacion1, nombreEstacion2) + " .\n");
+                                }
                                 break;
 
                             case 5:
@@ -206,6 +216,96 @@ public class Main {
                                                 "con los criterios de tipos de estaciones, ya sea para linea regular o linea circular.\n");
                                     }else{
                                         System.out.println("La linea: " + seleccionIDLinea + " no es valida.");
+                                    }
+                                }
+                                break;
+
+                            case 6:
+                                System.out.println("\nAntes de continuar, ¿Desea ver los trenes actuales del metro? (1: si, 2: no): ");
+                                auxPrintearTrenes = inTeclado.nextInt();
+                                if(auxPrintearTrenes==1){
+                                    System.out.println(sw.toStringTrains());
+                                }
+                                System.out.println("\nPor favor, ingrese la id del tren requerido: ");
+                                seleccionIDTren = inTeclado.nextInt();
+                                System.out.println("\nIngrese la posicion dentro del tren para el carro a agregar (posiciones comienzan desde el 0): ");
+                                posicionCarro = inTeclado.nextInt();
+
+                                if(!sw.getTrainsMap().containsKey(seleccionIDTren)){
+                                    System.out.println("\n\nEl tren: "+seleccionIDTren+" no existe en el metro. Vuelve a intentarlo.\n");
+                                }else {
+                                    System.out.println("\nAhora se solicitan los datos para crear un nuevo carro: ");
+                                    boolean idExistente = true;
+                                    idCarro = -1;
+                                    while(idExistente != false){
+                                        System.out.println("Ingrese la id de carro:");
+                                        idCarro = inTeclado.nextInt();
+                                        if(!sw.getPassengerCarsMap().containsKey(idCarro)){
+                                            idExistente = false;
+                                        }else{
+                                            System.out.println("Ya existe un tren con id: " + idCarro + ". Vuelve a intentarlo.\n");
+                                        }
+                                    }
+                                    System.out.println("Ingrese la capacidad maxima de pasajeros: ");
+                                    capacidadPasajeros = inTeclado.nextInt();
+                                    inTeclado.nextLine();
+                                    System.out.println("Ingrese el modelo del carro: ");
+                                    modeloCarro = inTeclado.nextLine();
+                                    System.out.println("Ingrese el fabricante del carro: ");
+                                    makerCarro = inTeclado.nextLine();
+
+                                    PassengerCar_212788287_EspinozaBarria carroTrencito = null;
+                                    boolean tipoCarroValido = false;
+                                    while(tipoCarroValido != true) {//condicional para ingresar tipo de carro valido
+                                        System.out.println("Ingrese el tipo de carro: (terminal o central): ");
+                                        String tipo = inTeclado.nextLine();
+                                        if (tipo.equals("terminal")) {
+                                            carroTrencito = new TerminalPCar_212788287_EspinozaBarria(idCarro, capacidadPasajeros, modeloCarro, makerCarro);
+                                            tipoCarroValido = true;
+                                        } else if (tipo.equals("central")) {
+                                            carroTrencito = new CentralPCar_212788287_EspinozaBarria(idCarro, capacidadPasajeros, modeloCarro, makerCarro);
+                                            tipoCarroValido = true;
+                                        } else {
+                                            System.out.println("El tipo de carro: " + tipo + " no es valido. Vuelve a intentarlo.\n");
+                                        }
+                                    }
+
+                                    sw.getTrainsMap().get(seleccionIDTren).addCar(carroTrencito,posicionCarro);
+                                    Map<Integer, PassengerCar_212788287_EspinozaBarria> carrosActuales = sw.getPassengerCarsMap();
+                                    carrosActuales.put(idCarro,carroTrencito);
+                                    sw.setPassengerCarsMap(carrosActuales);
+                                    //En este punto ya se agrego el carro al tren, pero eso no significa que sea un carro valido
+                                    if(sw.getTrainsMap().get(seleccionIDTren).isTrain()){
+                                        System.out.println("\nEl tren modificado cumple con las condiciones de tren valido:");
+                                        System.out.printf(sw.getTrainsMap().get(seleccionIDTren).toString());
+                                    }else{
+                                        System.out.println("\nEl tren modificado NO cumple con las condiciones de tren valido:");
+                                        System.out.printf(sw.getTrainsMap().get(seleccionIDTren).toString());
+                                    }
+                                }
+                                break;
+
+                            case 7:
+                                System.out.println("\nAntes de continuar, ¿Desea ver los trenes actuales del metro? (1: si, 2: no): ");
+                                auxPrintearTrenes = inTeclado.nextInt();
+                                if(auxPrintearTrenes==1){
+                                    System.out.println(sw.toStringTrains());
+                                }
+                                System.out.println("\nPor favor, ingrese la id del tren requerido: ");
+                                seleccionIDTren = inTeclado.nextInt();
+                                System.out.println("\nIngrese la posicion dentro del tren para el carro a eliminar (posiciones comienzan desde el 0): ");
+                                posicionCarro = inTeclado.nextInt();
+                                if(!sw.getTrainsMap().containsKey(seleccionIDTren)){
+                                    System.out.println("\n\nEl tren: "+seleccionIDTren+" no existe en el metro. Vuelve a intentarlo.\n");
+                                }else {
+                                    sw.getTrainsMap().get(seleccionIDTren).removeCar(posicionCarro);
+                                    //indicar validez del tren modificado
+                                    if(sw.getTrainsMap().get(seleccionIDTren).isTrain()){
+                                        System.out.println("\nEl tren modificado cumple con las condiciones de tren valido:");
+                                        System.out.printf(sw.getTrainsMap().get(seleccionIDTren).toString());
+                                    }else{
+                                        System.out.println("\nEl tren modificado NO cumple con las condiciones de tren valido:");
+                                        System.out.printf(sw.getTrainsMap().get(seleccionIDTren).toString());
                                     }
                                 }
                                 break;
@@ -291,19 +391,19 @@ public class Main {
                     System.out.println("\nSaliendo del programa\n");
                     break;
                 default:
-                    System.out.println("La opcion "+opcion+" no existe. Por favor, vuelve a intentarlo.");
+                    System.out.println("\nLa opcion "+opcion+" no existe. Por favor, vuelve a intentarlo.\n");
 
             }
 
 
 
-        }while(opcion != SALIDA_MENU_PRINCIPAL);
+        }while(opcion != 4);
 
     }
 
 
     private static void printMenuPrincipal() {
-        System.out.println("\n\n### Sistema Metro - Inicio ###\n");
+        System.out.println("\n\n### Sistema Metro - Inicio ###");
         System.out.println("Opciones de creacion de la red de metro y simulacion de ejecucion\n\n");
         System.out.println("\t1.  Cargar informacion del sistema de metro");
         System.out.println("\t2.  Visualizacion del sistema de metro");
@@ -313,7 +413,7 @@ public class Main {
     }
 
     private static void printMenuOpcion1() {
-        System.out.println("\n\n### Sistema Metro - Cargar informacion del sistema de metro ###\n");
+        System.out.println("\n\n### Sistema Metro - Cargar informacion del sistema de metro ###");
         System.out.println("Definiciones estructurales de su sistema subido desde archivos\n\n");
         System.out.println("\t1.  Creacion automatica del sistema de metro. Carga todos los archivos txt.");
         System.out.println("\t       En caso de no seleccionar esta opcion, se debera carga manualmente las estaciones, las secciones, las lineas,");
@@ -333,7 +433,7 @@ public class Main {
 
 
     private static void printMenuOpcion2() {
-        System.out.println("\n\n### Sistema Metro - Visualización del estado actual del sistema de metros  ###\n");
+        System.out.println("\n\n### Sistema Metro - Visualización del estado actual del sistema de metros  ###");
         System.out.println("Definiciones estructurales de su sistema subido desde archivos\n\n");
         System.out.println("\t1.  Desplegar en pantalla el estado actual de todo el sistema de metro");
         System.out.println("\t2.  Desplegar en pantalla solo las estaciones del sistema de metro");
@@ -350,7 +450,7 @@ public class Main {
 
 
     private static void printMenuOpcion3() {
-        System.out.println("\n\n### Sistema Metro - Interactuar con el sistema de metros ###\n");
+        System.out.println("\n\n### Sistema Metro - Interactuar con el sistema de metros ###");
         System.out.println("A traves de las siguientes opciones usted puede interactuar con la red de metros cargada previamente por todos los archivos de texto.\n\n");
         System.out.println("\t1.  lineLength: obtener el largo total de una linea.");
         System.out.println("\t2.  lineSectionLength: determinar el largo entre una estacion origen y final.");

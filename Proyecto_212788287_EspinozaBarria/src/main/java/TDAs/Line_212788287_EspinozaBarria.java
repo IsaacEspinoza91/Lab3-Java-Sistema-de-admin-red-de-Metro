@@ -309,6 +309,15 @@ public class Line_212788287_EspinozaBarria {
         return true;//Es true solo en el caso que las anteriores a la ultima station sean distintas de m, y que las centrales sean r ,o c.
     }
 
+    public boolean verificarStationInLine(String nameSt){
+        boolean resultado = false;
+        for(Section_212788287_EspinozaBarria sec : sections){
+            if(sec.getStation1().getName().equals(nameSt) || sec.getStation2().getName().equals(nameSt)){
+                resultado = true;
+            }
+        }
+        return resultado;
+    }
 
 
     @Override

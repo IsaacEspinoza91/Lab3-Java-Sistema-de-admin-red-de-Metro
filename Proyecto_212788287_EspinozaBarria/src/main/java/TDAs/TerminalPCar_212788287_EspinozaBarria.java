@@ -28,7 +28,7 @@ public class TerminalPCar_212788287_EspinozaBarria extends PassengerCar_21278828
     //Metodos
     @Override
     public String toString() {
-        String a = String.format("{ ID: %-4s   Capacidad: %-4s   Modelo: %-10s    Tipo: Terminal }",id,passengerCapacity,model);
+        String a = String.format("{ ID: %-4s   Capacidad: %-4s   Modelo: %-10s   Fabricante: %-8s   Tipo: Terminal }",id,passengerCapacity,model,trainMaker);
         return a;
     }
 }
