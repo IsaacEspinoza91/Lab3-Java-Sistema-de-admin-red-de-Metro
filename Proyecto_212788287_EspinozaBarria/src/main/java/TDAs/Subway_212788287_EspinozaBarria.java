@@ -3,14 +3,13 @@ package TDAs;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
-//import java.util.Date;
 
 
 /**
  * Subway es la abstraccion de una red de metro
  * @author isaac
- * @version 1.0 Java 11
- * @since 2024-06-15
+ * @version 3.0 Java 11
+ * @since 2024-06-19
  */
 public class Subway_212788287_EspinozaBarria {
 
@@ -497,7 +496,6 @@ public class Subway_212788287_EspinozaBarria {
         double idLinea=-1;
         int sumaParcialSegundos, segundosRecorridoSection = 0, segundosStation2Section = 0;
         Line_212788287_EspinozaBarria lineAux = null;
-        //RecorridoDriverTrain_212788287_EspinozaBarria recorridoAux = null;
         Train_212788287_EspinozaBarria train = trainsMap.get(idTrencito);
 
         //notar que un tren puede tener multiples recorridos, por lo que se tiene que buscar el adecuado al horario preguntado
@@ -743,6 +741,7 @@ public class Subway_212788287_EspinozaBarria {
                 int id = Integer.parseInt(parts[0]);
                 String nombre = parts[1];
                 String fabricanteTrenes = parts[2];
+                //COMPOSICION, creo un objeto de otra clase desde esta clase
                 Driver_212788287_EspinozaBarria driverActual = new Driver_212788287_EspinozaBarria(id,nombre,fabricanteTrenes);
                 addDriver(driverActual);
             }
