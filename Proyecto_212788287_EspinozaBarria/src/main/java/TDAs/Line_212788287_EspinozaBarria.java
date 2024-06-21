@@ -309,6 +309,11 @@ public class Line_212788287_EspinozaBarria {
         return true;//Es true solo en el caso que las anteriores a la ultima station sean distintas de m, y que las centrales sean r ,o c.
     }
 
+    /**
+     * Verifica que una estacion especifica segun su numbre exista en la linea
+     * @param nameSt Nombre exacto de la estacion (String)
+     * @return Resultado booleano
+     */
     public boolean verificarStationInLine(String nameSt){
         boolean resultado = false;
         for(Section_212788287_EspinozaBarria sec : sections){
