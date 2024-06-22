@@ -1,11 +1,9 @@
 import TDAs.*;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.security.spec.RSAOtherPrimeInfo;
-import java.util.*;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
 
@@ -19,7 +17,8 @@ public class Main {
 
         Scanner inTeclado = new Scanner(System.in);
         int opcion, opcionSubMenu1, opcionSubMenu2, opcionSubMenu3, seleccionIDTren, anioIngresado, mesIngresado,
-                diaIngresado, horaIngresado, minutosIngresado, posicionCarro, auxPrintearTrenes, idCarro, capacidadPasajeros;
+                diaIngresado, horaIngresado, minutosIngresado, posicionCarro, auxPrintearTrenes, auxPrintearRecorridos,
+                idCarro, capacidadPasajeros;
         double seleccionIDLinea;
         String nombreEstacion1, nombreEstacion2, modeloCarro, makerCarro;
         do{
@@ -363,6 +362,11 @@ public class Main {
                                 break;
 
                             case 10:
+                                System.out.println("\nAntes de continuar, ¿Desea ver los recorridos de trenes del metro? (1: si, 2: no): ");
+                                auxPrintearRecorridos = inTeclado.nextInt();
+                                if(auxPrintearRecorridos==1){
+                                    System.out.println(sw.toStringRecorridos());
+                                }
                                 System.out.println("\nPor favor, ingrese la id del tren requerido: ");
                                 seleccionIDTren = inTeclado.nextInt();
                                 System.out.println("A continuacion, ingrese los datos de la fecha.\nIngrese el anio: ");
@@ -380,6 +384,11 @@ public class Main {
                                 break;
 
                             case 11:
+                                System.out.println("\nAntes de continuar, ¿Desea ver los recorridos de trenes del metro? (1: si, 2: no): ");
+                                auxPrintearRecorridos = inTeclado.nextInt();
+                                if(auxPrintearRecorridos==1){
+                                    System.out.println(sw.toStringRecorridos());
+                                }
                                 System.out.println("\nPor favor, ingrese la id del tren requerido: ");
                                 seleccionIDTren = inTeclado.nextInt();
                                 System.out.println("A continuacion, ingrese los datos de la fecha.\nIngrese el anio: ");
