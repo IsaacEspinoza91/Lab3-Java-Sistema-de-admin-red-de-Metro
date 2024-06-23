@@ -376,7 +376,7 @@ public class Subway_212788287_EspinozaBarria {
     }
 
     /**
-     * Asigna un tren a una linea especifica dentro de una red de metro. Crea instancias de la clase AsignacionTrainLine.
+     * Asigna un tren a una linea especifica dentro de una red de metro.
      * Requerimiento Funcional 22
      * @param train Tren (Train) a asignar
      * @param line Linea (Line) a asignar
