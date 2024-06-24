@@ -5,14 +5,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Clase principal para ejecutar el programa de administracion de metro
+ * @author isaac
+ * @version 5 Java 11
+ * @since 2024-06-24
+ */
 public class Main {
 
 
     public static void main(String[] args) {
         Subway_212788287_EspinozaBarria sw = new Subway_212788287_EspinozaBarria(1,"Metro de Santigo");
-        System.out.println("\n\n\n");
-
-
+        System.out.println("\n\n");
 
 
         Scanner inTeclado = new Scanner(System.in);
@@ -27,7 +31,6 @@ public class Main {
 
             switch(opcion){
                 case 1:
-
 
                     do{
                         printMenuOpcion1();
@@ -77,13 +80,10 @@ public class Main {
                         }
 
                     }while(opcionSubMenu1 != 10);
+
+
                     break;
-
-
-
-
                 case 2:
-
 
                     do{
                         printMenuOpcion2();
@@ -125,12 +125,7 @@ public class Main {
                                 break;
                         }
 
-
-
                     }while(opcionSubMenu2 != 10);
-
-
-
 
 
                     break;
@@ -274,10 +269,15 @@ public class Main {
                                             }
                                         }
                                     }else if(eleccionCarroNuevo==2){
-                                        System.out.println(sw.toStringCars());
+                                        System.out.println("\nA conticuacion, se muestran los carros Sin asignar:");
+                                        for(PassengerCar_212788287_EspinozaBarria carro : sw.getPassengerCarsMap().values()){
+                                            if(carro.getAsignadoATren()==false){
+                                                System.out.println("\t"+carro);
+                                            }
+                                        }
                                         boolean idSinAsignar = false;
                                         while(idSinAsignar != true){
-                                            System.out.println("Por favor ingrese la id de carro sin asignar: ");
+                                            System.out.println("\nPor favor ingrese la id de carro sin asignar: ");
                                             idCarro = inTeclado.nextInt();
                                             if(!sw.getPassengerCarsMap().containsKey(idCarro)){
                                                 System.out.println("El carro con id: "+idCarro+" no existe en el metro. Vuelve a intentarlo.\n");
@@ -336,6 +336,11 @@ public class Main {
                                 break;
 
                             case 8:
+                                System.out.println("\nAntes de continuar, ¿Desea ver los trenes actuales del metro? (1: si, 2: no): ");
+                                auxPrintearTrenes = inTeclado.nextInt();
+                                if(auxPrintearTrenes==1){
+                                    System.out.println(sw.toStringTrains());
+                                }
                                 System.out.println("\nPor favor, ingrese la id del tren requerido: ");
                                 seleccionIDTren = inTeclado.nextInt();
                                 if(!sw.getTrainsMap().containsKey(seleccionIDTren)){
@@ -347,10 +352,16 @@ public class Main {
                                     } else {
                                         System.out.println("El tren: " + seleccionIDTren + " no es valido.\n");
                                     }
+                                    System.out.println(sw.getTrainsMap().get(seleccionIDTren).toString());
                                 }
                                 break;
 
                             case 9:
+                                System.out.println("\nAntes de continuar, ¿Desea ver los trenes actuales del metro? (1: si, 2: no): ");
+                                auxPrintearTrenes = inTeclado.nextInt();
+                                if(auxPrintearTrenes==1){
+                                    System.out.println(sw.toStringTrains());
+                                }
                                 System.out.println("\nPor favor, ingrese la id del tren requerido: ");
                                 seleccionIDTren = inTeclado.nextInt();
                                 if(!sw.getTrainsMap().containsKey(seleccionIDTren)){
@@ -430,8 +441,6 @@ public class Main {
 
             }
 
-
-
         }while(opcion != 4);
 
     }
@@ -468,7 +477,7 @@ public class Main {
 
 
     private static void printMenuOpcion2() {
-        System.out.println("\n\n### Sistema Metro - Visualización del estado actual del sistema de metros  ###");
+        System.out.println("\n\n### Sistema Metro - Visualizacion del estado actual del sistema de metros  ###");
         System.out.println("Definiciones estructurales de su sistema subido desde archivos\n\n");
         System.out.println("\t1.  Desplegar en pantalla el estado actual de todo el sistema de metro");
         System.out.println("\t2.  Desplegar en pantalla solo las estaciones del sistema de metro");

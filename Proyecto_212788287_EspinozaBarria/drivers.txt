@@ -1,7 +1,22 @@
 0,Isakito Espinoza,CAF
-1,Jorge Gonzalez,ALSTOM
+1,Usachin,CAF
 2,Rodrigo Vasquez Altoyoyo,CAF
-3,Cristobal Briceno,ALSTOM
-4,Gustavo Cerati,ALSTOM
+3,Cristobal Briceno,CAF
+4,Gustavo Cerati,CAF
 5,Marcelo Barticcioto,CAF
 6,Zolezzi,CAF
+7,Boric,Alstom
+8,Jorge Gonzalez,Alstom
+9,Pablo Solari,Alstom
+10,Steve,CAF
+11,Leo Fender,CAF
+12,George Michael,Alstom
+13,Harry Potter,Alstom
+14,Luis Miguel,Alstom
+15,Emma Stone,Alstom
+16,Chico Trujillo,Alstom
+17,Amar Azul,Alstom
+18,Esteban Paredes,Alstom
+19,Paula San Martin,Alstom
+20,Julieta Venegas,Alstom
+21,Spiderman,Alstom

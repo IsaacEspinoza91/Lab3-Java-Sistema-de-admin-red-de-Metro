@@ -412,7 +412,7 @@ public class Subway_212788287_EspinozaBarria {
                 List<Train_212788287_EspinozaBarria> trenesAux = asignacionesTL.get(idsLineasDeAsignaciones);
                 trenesAux.add(train);
                 asignacionesTL.replace(idsLineasDeAsignaciones, trenesAux);
-                System.out.println("\033[0;31m"+" --- Se realizo la asignacion Tren-Linea correctamente al metro en assignTrainToLine---\n"+"\033[0m");
+                System.out.println("\033[0;31m"+" --- Se realizo la asignacion Tren-Linea correctamente al metro en assignTrainToLine---"+"\033[0m");
                 return;
             }
         }
@@ -831,7 +831,7 @@ public class Subway_212788287_EspinozaBarria {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                double idLine = Integer.parseInt(parts[0]);
+                double idLine = Double.parseDouble(parts[0]);
                 String[] idsTrenes = parts[1].split("-");
                 for(String idtren : idsTrenes){//agregamos carros a una lista en orden
                     assignTrainToLine(trainsMap.get(Integer.parseInt(idtren)),linesMap.get(idLine));//Buscamos trenes por ID en el subway
